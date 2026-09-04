@@ -1,76 +1,100 @@
-<!-- About Section -->
-<section id="about">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Arkansh Sharma</title>
+    <style>
+        /* --- About Section Styles --- */
+        
+        /* Generic utility class for the glow effect */
+        .glow-effect {
+            text-shadow: 
+                0 0 6px rgba(255, 255, 255, 0.9),
+                0 0 14px rgba(180, 200, 255, 0.75),
+                0 0 30px rgba(120, 160, 255, 0.55),
+                0 0 55px rgba(80, 130, 255, 0.35);
+        }
 
-  <h2 class="glow-label">About Me</h2>
-  <p>
-    I'm a final year medical student at Government Medical College, Chennai, India, working at the intersection
-    of clinical neurology, computational neuroscience, and data science.
-  </p>
-  <p>
-    I'm particularly interested in using quantitative and computational approaches to understand
-    neurological disease, from identifying early, clinically meaningful biomarkers to developing
-    models that can improve classification, prediction, and ultimately patient care. Alongside
-    primary research, I work extensively with systematic reviews, meta-analyses, and network
-    meta-analyses to synthesize evidence across complex clinical questions.
-  </p>
+        .about-section .section-subtitle {
+            display: inline-block;
+            color: #fff;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            margin-bottom: 0.5rem;
+            /* Add margin-top to separate from previous paragraphs if necessary */
+            margin-top: 1.5rem; 
+        }
 
-  <ul class="contact-links">
-    <li><a href="mailto:arkansh.neuro@gmail.com">Email</a></li>
-    <li><a href="https://scholar.google.com/citations?user=zbSFvVQAAAAJ" target="_blank">Google Scholar</a></li>
-    <li><a href="https://linkedin.com/in/arkanshsharma" target="_blank">LinkedIn</a></li>
-    <li><a href="https://researchgate.net/profile/Arkansh-Sharma-2" target="_blank">ResearchGate</a></li>
-    <li><a href="https://x.com/sharma_arkansh" target="_blank">Twitter / X</a></li>
-    <li><a href="https://orcid.org/0009-0001-7472-5966" target="_blank">ORCID</a></li>
-  </ul>
+        /* Targeting the specific first subtitle to remove top margin */
+        .about-section .section-subtitle:first-of-type {
+            margin-top: 0;
+        }
 
-  <h2 class="glow-label">About This Site</h2>
-  <p>
-    This site is a record of the thinking behind my research.
-  </p>
-  <p>
-    It brings together working notes, analyses, partial results, methodological experiments,
-    and commentary from projects that are often still evolving. Some pages are polished;
-    others are deliberately not. The aim is not to reproduce my published papers, but to
-    document the questions, ideas, analyses, and decisions that sit behind them.
-  </p>
-  <p>
-    Think of it as a research notebook in public, something to be read alongside the papers,
-    rather than instead of them.
-  </p>
+        .about-section .contact-links {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem 1.5rem;
+            margin: 1rem 0 1.5rem;
+        }
 
-</section>
+        .about-section .contact-links a {
+            color: inherit;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            transition: border-color 0.2s;
+        }
 
-<style>
-  .glow-label {
-    display: inline-block;
-    color: #fff;
-    text-shadow:
-      0 0 6px rgba(255, 255, 255, 0.9),
-      0 0 14px rgba(180, 200, 255, 0.75),
-      0 0 30px rgba(120, 160, 255, 0.55),
-      0 0 55px rgba(80, 130, 255, 0.35);
-    font-weight: 600;
-    letter-spacing: 0.03em;
-    margin-bottom: 0.5rem;
-  }
+        .about-section .contact-links a:hover {
+            border-bottom-color: rgba(255, 255, 255, 0.9);
+        }
+    </style>
+</head>
+<body>
 
-  .contact-links {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem 1.5rem;
-    margin: 1rem 0 1.5rem;
-  }
+    <!-- About Section -->
+    <section id="about" class="about-section">
 
-  .contact-links a {
-    color: inherit;
-    text-decoration: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-    transition: border-color 0.2s;
-  }
+        <h3 class="section-subtitle glow-effect">About Me</h3>
+        <p>
+            I'm a final year medical student at Government Medical College, Chennai, India, working at the intersection
+            of clinical neurology, computational neuroscience, and data science.
+        </p>
+        <p>
+            I'm particularly interested in using quantitative and computational approaches to understand
+            neurological disease, from identifying early, clinically meaningful biomarkers to developing
+            models that can improve classification, prediction, and ultimately patient care. Alongside
+            primary research, I work extensively with systematic reviews, meta-analyses, and network
+            meta-analyses to synthesize evidence across complex clinical questions.
+        </p>
 
-  .contact-links a:hover {
-    border-color: rgba(255, 255, 255, 0.9);
-  }
-</style>
+        <ul class="contact-links">
+            <li><a href="mailto:arkansh.neuro@gmail.com">Email</a></li>
+            <li><a href="https://scholar.google.com/citations?user=zbSFvVQAAAAJ" target="_blank">Google Scholar</a></li>
+            <li><a href="https://linkedin.com/in/arkanshsharma" target="_blank">LinkedIn</a></li>
+            <li><a href="https://researchgate.net/profile/Arkansh-Sharma-2" target="_blank">ResearchGate</a></li>
+            <li><a href="https://x.com/sharma_arkansh" target="_blank">Twitter / X</a></li>
+            <li><a href="https://orcid.org/0009-0001-7472-5966" target="_blank">ORCID</a></li>
+        </ul>
+
+        <h3 class="section-subtitle glow-effect">About This Site</h3>
+        <p>
+            This site is a record of the thinking behind my research.
+        </p>
+        <p>
+            It brings together working notes, analyses, partial results, methodological experiments,
+            and commentary from projects that are often still evolving. Some pages are polished;
+            others are deliberately not. The aim is not to reproduce my published papers, but to
+            document the questions, ideas, analyses, and decisions that sit behind them.
+        </p>
+        <p>
+            Think of it as a research notebook in public, something to be read alongside the papers,
+            rather than instead of them.
+        </p>
+
+    </section>
+
+</body>
+</html>
