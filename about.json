@@ -1,10 +1,87 @@
 {
-  "intro": "This site collects working notes, partial results, and commentary that accompany an ongoing research project. It is meant to be read alongside the paper, not instead of it.",
-  "bio": "Replace this paragraph with a short bio: your name, affiliation, and the broad question your research is about. Two or three sentences is plenty.",
+  "name": "Arkansh Sharma",
+  "title": "MBBS Candidate & Neurology Research Intern",
+  "photo": "images/profile.jpg",
+  "intro": "This site collects working notes, partial results, and commentary that accompany ongoing research in neurology and computational neuroscience. It is meant to be read alongside the papers, not instead of them.",
+  "bio": "I'm a medical student at Government Medical College, Omandurar, currently working as a research intern in the Albers Lab at Harvard Medical School and Massachusetts General Hospital. My work sits at the intersection of clinical neurology and machine learning — olfactory biomarkers of neurodegeneration, EEG-based classification, and large-scale meta-analyses across stroke, epilepsy, and dementia.",
   "contacts": [
-    {"label": "Email", "value": "you@university.edu", "href": "mailto:you@university.edu"},
-    {"label": "Preprint / paper", "value": "arXiv link", "href": "#"},
-    {"label": "Code", "value": "GitHub repo", "href": "#"},
-    {"label": "Scholar", "value": "Google Scholar", "href": "#"}
+    {"label": "Email", "value": "arkansh.neuro@gmail.com", "href": "mailto:arkansh.neuro@gmail.com"},
+    {"label": "Google Scholar", "value": "scholar.google.com", "href": "https://scholar.google.com/citations?user=zbSFvVQAAAAJ"},
+    {"label": "LinkedIn", "value": "linkedin.com/in/arkanshsharma", "href": "https://linkedin.com/in/arkanshsharma"},
+    {"label": "ResearchGate", "value": "researchgate.net", "href": "https://researchgate.net/profile/Arkansh-Sharma-2"},
+    {"label": "Twitter / X", "value": "@sharma_arkansh", "href": "https://x.com/sharma_arkansh"},
+    {"label": "ORCID", "value": "0009-0001-7472-5966", "href": "https://orcid.org/0009-0001-7472-5966"}
+  ],
+  "education": [
+    {
+      "degree": "Bachelor of Medicine, Bachelor of Surgery (MBBS)",
+      "place": "Government Medical College, Omandurar, Chennai, India",
+      "period": "Nov 2022 – Apr 2028",
+      "note": "In progress"
+    },
+    {
+      "degree": "Higher Secondary Education (Class XII), CBSE",
+      "place": "Bharatiya Vidya Bhavan's Mehta Vidyalaya, New Delhi, India",
+      "period": "Apr 2020 – Jul 2022"
+    },
+    {
+      "degree": "Secondary Education (Class X), CBSE",
+      "place": "Father Agnel School, Vaishali, Uttar Pradesh, India",
+      "period": "Apr 2017 – Mar 2020"
+    }
+  ],
+  "research": [
+    {
+      "role": "Research Intern",
+      "place": "Albers Lab, Department of Neurology, Harvard Medical School & Massachusetts General Hospital, Boston, USA",
+      "period": "2025 – Present",
+      "note": "Working on olfactory function as a predictor of cognitive decline, pTDP-43 and dsRNA biomarkers in ALS, olfactory dysfunction and cerebrovascular risk, and COVID-19's link to incident dementia. Supervised by Mark W. Albers, MD, PhD."
+    },
+    {
+      "role": "Remote Collaborator",
+      "place": "Altalib Lab, Department of Neurology, Yale School of Medicine, New Haven, USA",
+      "period": "2025 – Present",
+      "note": "Systematic reviews and network meta-analyses on headache burden in epilepsy, glymphatic system dysfunction, and sleep disorder treatments in epilepsy."
+    },
+    {
+      "role": "Computational Neuroscience Trainee",
+      "place": "Neuromatch Academy, IISc Bangalore, University of Zurich, and IIT Madras workshops",
+      "period": "2024 – 2025",
+      "note": "EEG/ECoG signal processing, BCI decoding, dynamic causal modeling, and machine learning for neural data — spanning motor imagery classification, seizure detection, and generative models of perception."
+    }
+  ],
+  "awards": [
+    {
+      "title": "Full scholarship, Alzheimer's Association International Conference (AAIC) 2026",
+      "place": "London, UK",
+      "period": "2026",
+      "note": "Covering travel, accommodation, and registration (~£2,500)."
+    },
+    {
+      "title": "Impact Scholars Program",
+      "place": "Neuromatch Academy",
+      "period": "2024 – 2025",
+      "note": "Selected for a 6-month research internship."
+    },
+    {
+      "title": "Full scholarship, Computational Neuroscience Course",
+      "place": "Neuromatch Academy",
+      "period": "2024"
+    },
+    {
+      "title": "Full scholarship, Computational Psychiatry Course",
+      "place": "University of Zurich",
+      "period": "2024"
+    },
+    {
+      "title": "Finalist, Pediatrics Case Presentation",
+      "place": "National Undergraduate Conference (CONNAISSANCE'24), JIPMER, Puducherry",
+      "period": "2024"
+    },
+    {
+      "title": "99.45 percentile, NEET",
+      "place": "Among 1.8 million test takers nationwide",
+      "period": ""
+    }
   ]
 }
