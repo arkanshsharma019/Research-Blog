@@ -347,7 +347,7 @@ async function renderAbout(){
         <img class="profile-photo" src="${about.photo}" alt="${about.name}">
         <div class="profile-info">
           <h1>${about.name}</h1>
-          <p class="profile-title">${about.title}</p>
+          ${about.title ? `<p class="profile-title">${about.title}</p>` : ''}
           <p>${about.bio}</p>
           
           <table class="contact-table">
