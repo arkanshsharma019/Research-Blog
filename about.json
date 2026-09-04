@@ -5,6 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Arkansh Sharma</title>
     <style>
+        /* --- General Body Styling (Just for preview purposes) --- */
+        body {
+            background-color: #121212; /* Assuming dark mode based on previous text colors */
+            color: #e0e0e0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            padding: 2rem;
+        }
+
         /* --- About Section Styles --- */
         
         /* Generic utility class for the glow effect */
@@ -22,33 +31,64 @@
             font-weight: 600;
             letter-spacing: 0.03em;
             margin-bottom: 0.5rem;
-            /* Add margin-top to separate from previous paragraphs if necessary */
-            margin-top: 1.5rem; 
+            margin-top: 2rem; 
         }
 
-        /* Targeting the specific first subtitle to remove top margin */
         .about-section .section-subtitle:first-of-type {
             margin-top: 0;
         }
 
-        .about-section .contact-links {
+        .about-section p {
+            margin-bottom: 1rem;
+        }
+
+        /* --- New Table-like Contact Links --- */
+        .about-section .contact-table {
             list-style: none;
             padding: 0;
+            margin: 2.5rem 0;
+            width: 100%;
+            max-width: 700px; /* Keeps the list from stretching too wide on large screens */
+            border-top: 1px solid rgba(255, 255, 255, 0.2); /* Top divider line */
+        }
+
+        .about-section .contact-table li {
             display: flex;
-            flex-wrap: wrap;
-            gap: 0.75rem 1.5rem;
-            margin: 1rem 0 1.5rem;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Row divider lines */
         }
 
-        .about-section .contact-links a {
-            color: inherit;
+        .about-section .contact-table .contact-label {
+            font-weight: 500;
+            color: #f5f5f5;
+        }
+
+        .about-section .contact-table .contact-value {
             text-decoration: none;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-            transition: border-color 0.2s;
+            /* Adapted the dark green from your image to a bright teal for dark mode readability */
+            color: #4db6ac; 
+            text-align: right;
+            transition: color 0.2s ease, opacity 0.2s ease;
         }
 
-        .about-section .contact-links a:hover {
-            border-bottom-color: rgba(255, 255, 255, 0.9);
+        .about-section .contact-table .contact-value:hover {
+            color: #80cbc4;
+            opacity: 0.8;
+        }
+
+        /* Responsive: Stack the label and link on small mobile screens */
+        @media (max-width: 500px) {
+            .about-section .contact-table li {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+                padding: 1rem 0;
+            }
+            .about-section .contact-table .contact-value {
+                text-align: left;
+            }
         }
     </style>
 </head>
@@ -70,13 +110,32 @@
             meta-analyses to synthesize evidence across complex clinical questions.
         </p>
 
-        <ul class="contact-links">
-            <li><a href="mailto:arkansh.neuro@gmail.com">Email</a></li>
-            <li><a href="https://scholar.google.com/citations?user=zbSFvVQAAAAJ" target="_blank">Google Scholar</a></li>
-            <li><a href="https://linkedin.com/in/arkanshsharma" target="_blank">LinkedIn</a></li>
-            <li><a href="https://researchgate.net/profile/Arkansh-Sharma-2" target="_blank">ResearchGate</a></li>
-            <li><a href="https://x.com/sharma_arkansh" target="_blank">Twitter / X</a></li>
-            <li><a href="https://orcid.org/0009-0001-7472-5966" target="_blank">ORCID</a></li>
+        <!-- New Layout added here -->
+        <ul class="contact-table">
+            <li>
+                <span class="contact-label">Email</span>
+                <a href="mailto:arkansh.neuro@gmail.com" class="contact-value">arkansh.neuro@gmail.com</a>
+            </li>
+            <li>
+                <span class="contact-label">Google Scholar</span>
+                <a href="https://scholar.google.com/citations?user=zbSFvVQAAAAJ" target="_blank" class="contact-value">scholar.google.com</a>
+            </li>
+            <li>
+                <span class="contact-label">LinkedIn</span>
+                <a href="https://linkedin.com/in/arkanshsharma" target="_blank" class="contact-value">linkedin.com/in/arkanshsharma</a>
+            </li>
+            <li>
+                <span class="contact-label">ResearchGate</span>
+                <a href="https://researchgate.net/profile/Arkansh-Sharma-2" target="_blank" class="contact-value">researchgate.net</a>
+            </li>
+            <li>
+                <span class="contact-label">Twitter / X</span>
+                <a href="https://x.com/sharma_arkansh" target="_blank" class="contact-value">@sharma_arkansh</a>
+            </li>
+            <li>
+                <span class="contact-label">ORCID</span>
+                <a href="https://orcid.org/0009-0001-7472-5966" target="_blank" class="contact-value">0009-0001-7472-5966</a>
+            </li>
         </ul>
 
         <h3 class="section-subtitle glow-effect">About This Site</h3>
