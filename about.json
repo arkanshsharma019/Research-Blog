@@ -34,7 +34,64 @@
       "value": "ORCID"
     }
   ],
-  "education": [],
-  "research": [],
-  "awards": []
+  "education": [
+    {
+      "period": "Nov 2022 – Apr 2028",
+      "degree": "Bachelor of Medicine, Bachelor of Surgery (MBBS) — In progress",
+      "place": "Government Medical College, Omandurar, Chennai, India",
+      "note": ""
+    },
+    {
+      "period": "Apr 2020 – Jul 2022",
+      "degree": "Higher Secondary Education (Class XII), CBSE",
+      "place": "Bharatiya Vidya Bhavan's Mehta Vidyalaya, New Delhi, India",
+      "note": ""
+    },
+    {
+      "period": "Apr 2017 – Mar 2020",
+      "degree": "Secondary Education (Class X), CBSE",
+      "place": "Father Agnel School, Vaishali, Uttar Pradesh, India",
+      "note": ""
+    }
+  ],
+  "research": [
+    {
+      "period": "2025 – Present",
+      "role": "Research Intern",
+      "place": "Albers Lab, Department of Neurology, Harvard Medical School & Massachusetts General Hospital, Boston, USA",
+      "note": "Supervisor: Mark W. Albers, MD, PhD. Co-Supervisors: Priyanka Sinha, PhD; Benoit Jobin, PhD. Projects on olfactory function and cognitive decline (MCSA), pTDP-43/dsRNA biomarkers in ALS, olfactory dysfunction and cerebrovascular risk, and COVID-19/dementia risk."
+    },
+    {
+      "period": "2025 – Present",
+      "role": "Remote Collaborator",
+      "place": "Altalib Lab, Department of Neurology, Yale School of Medicine, New Haven, USA",
+      "note": "Supervisor: Poojith Nuthalapati, MD. Projects on headache burden in epilepsy, glymphatic system dysfunction in epilepsy, and sleep disorder treatments in epilepsy (NMA)."
+    }
+  ],
+  "awards": [
+    {
+      "period": "2026",
+      "title": "AAIC Full Scholarship",
+      "place": "Alzheimer's Association International Conference (AAIC) 2026, London, UK",
+      "note": "Full scholarship covering travel, accommodation, and registration (~£2,500) for oral presentation, July 12–15, 2026."
+    },
+    {
+      "period": "2024 – 2025",
+      "title": "Impact Scholars Program",
+      "place": "Neuromatch Academy",
+      "note": "Selected for a 6-month internship."
+    },
+    {
+      "period": "2024",
+      "title": "Full Scholarship — Computational Neuroscience Course",
+      "place": "Neuromatch Academy",
+      "note": ""
+    },
+    {
+      "period": "2024",
+      "title": "Full Scholarship — Computational Psychiatry Course",
+      "place": "University of Zurich",
+      "note": ""
+    }
+  ]
 }
