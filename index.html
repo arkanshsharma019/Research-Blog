@@ -155,7 +155,6 @@
     </div>
     <div class="masthead-meta">
       <span id="meta-count">— posts</span>
-      <span id="meta-updated">—</span>
     </div>
   </div>
 </header>
@@ -214,7 +213,7 @@ async function setMeta(){
   try{
     const posts = await getManifest();
     document.getElementById('meta-count').textContent = posts.length + (posts.length===1 ? ' post' : ' posts');
-    document.getElementById('meta-updated').textContent = posts.length ? 'last updated ' + fmtDate(posts[0].date) : '';
+    // last-updated meta removed
   }catch(e){ /* silent */ }
 }
 
