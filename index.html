@@ -130,10 +130,10 @@
   .cv-item{display:grid; grid-template-columns:150px 1fr; gap:22px; padding:20px 0; border-bottom:1px solid var(--rule);}
   @media (max-width:700px){ .cv-item{grid-template-columns:1fr; gap:4px;} }
   .cv-item:first-child{border-top:1px solid var(--rule);}
-  .cv-period{font-family:var(--mono); font-size:0.76rem; color:var(--ink-soft); padding-top:2px;}
+  .cv-place{font-family:var(--sans); font-size:0.85rem; color:var(--signal); margin:0 0 8px;}
+  .cv-period{font-family:var(--mono); font-size:0.76rem; color:var(--ink-soft); padding-top:2px; display:flex; flex-direction:column; align-items:flex-start; gap:10px;}
+  .cv-logo{width:56px; height:56px; object-fit:contain;}
   .cv-item h3{font-size:1.05rem; font-weight:500; margin:0 0 5px; line-height:1.35;}
-  .cv-place{font-family:var(--sans); font-size:0.85rem; color:var(--signal); margin:0 0 8px; display:flex; align-items:center; gap:8px;}
-  .cv-logo{width:20px; height:20px; object-fit:contain; flex-shrink:0;}
   .cv-note{color:var(--ink-soft); font-size:0.95rem; line-height:1.6; margin:0; max-width:60ch;}
 
   footer{border-top:1px solid var(--rule); padding:24px 0 40px; font-family:var(--mono); font-size:0.72rem; color:var(--ink-soft); display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;}
@@ -328,10 +328,13 @@ async function renderPost(id){
 function cvItem(period, title, place, note, image){
   return `
     <div class="cv-item">
-      <div class="cv-period">${period}</div>
+      <div class="cv-period">
+        ${image ? `<img class="cv-logo" src="${image}" alt="">` : ''}
+        <span>${period}</span>
+      </div>
       <div>
         <h3>${title}</h3>
-        <p class="cv-place">${image ? `<img class="cv-logo" src="${image}" alt="">` : ''}${place}</p>
+        <p class="cv-place">${place}</p>
         ${note ? `<p class="cv-note">${note}</p>` : ''}
       </div>
     </div>
