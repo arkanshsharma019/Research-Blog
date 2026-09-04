@@ -80,6 +80,9 @@
   .post-body p{margin:0 0 18px;}
   .post-body blockquote{margin:26px 0; padding-left:20px; border-left:2px solid var(--amber); color:var(--ink-soft); font-style:italic;}
   .post-body code{font-family:var(--mono); background:var(--paper-raised); padding:2px 5px; font-size:0.9em; color:var(--ink);}
+  .post-figure{margin:30px 0;}
+  .post-figure img{width:100%; height:auto; display:block; border:1px solid var(--rule);}
+  .post-figure figcaption{font-family:var(--sans); font-size:0.85rem; color:var(--ink-soft); margin-top:8px; line-height:1.5;}
   .post-foot{margin-top:48px; padding-top:22px; border-top:1px solid var(--rule); font-family:var(--sans); font-size:0.85rem; color:var(--ink-soft);}
   .post-foot a{cursor:pointer; color:var(--teal); text-decoration:none;}
 
@@ -295,6 +298,7 @@ async function renderPost(id){
     const bodyHtml = p.body.map(b=>{
       if(b.type==='h2') return `<h2>${b.text}</h2>`;
       if(b.type==='quote') return `<blockquote>${b.text}</blockquote>`;
+      if(b.type==='image') return `<figure class="post-figure"><img src="${b.src}" alt="${b.alt||''}">${b.caption ? `<figcaption>${b.caption}</figcaption>` : ''}</figure>`;
       return `<p>${b.text}</p>`;
     }).join('');
     const prev = posts[idx+1];
