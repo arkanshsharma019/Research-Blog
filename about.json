@@ -1,87 +1,76 @@
-{
-  "name": "Arkansh Sharma",
-  "title": "MBBS Candidate & Neurology Research Intern",
-  "photo": "images/profile.jpg",
-  "intro": "This site collects working notes, partial results, and commentary that accompany ongoing research in neurology and computational neuroscience. It is meant to be read alongside the papers, not instead of them.",
-  "bio": "I'm a medical student at Government Medical College, Omandurar, currently working as a research intern in the Albers Lab at Harvard Medical School and Massachusetts General Hospital. My work sits at the intersection of clinical neurology and machine learning — olfactory biomarkers of neurodegeneration, EEG-based classification, and large-scale meta-analyses across stroke, epilepsy, and dementia.",
-  "contacts": [
-    {"label": "Email", "value": "arkansh.neuro@gmail.com", "href": "mailto:arkansh.neuro@gmail.com"},
-    {"label": "Google Scholar", "value": "scholar.google.com", "href": "https://scholar.google.com/citations?user=zbSFvVQAAAAJ"},
-    {"label": "LinkedIn", "value": "linkedin.com/in/arkanshsharma", "href": "https://linkedin.com/in/arkanshsharma"},
-    {"label": "ResearchGate", "value": "researchgate.net", "href": "https://researchgate.net/profile/Arkansh-Sharma-2"},
-    {"label": "Twitter / X", "value": "@sharma_arkansh", "href": "https://x.com/sharma_arkansh"},
-    {"label": "ORCID", "value": "0009-0001-7472-5966", "href": "https://orcid.org/0009-0001-7472-5966"}
-  ],
-  "education": [
-    {
-      "degree": "Bachelor of Medicine, Bachelor of Surgery (MBBS)",
-      "place": "Government Medical College, Omandurar, Chennai, India",
-      "period": "Nov 2022 – Apr 2028",
-      "note": "In progress"
-    },
-    {
-      "degree": "Higher Secondary Education (Class XII), CBSE",
-      "place": "Bharatiya Vidya Bhavan's Mehta Vidyalaya, New Delhi, India",
-      "period": "Apr 2020 – Jul 2022"
-    },
-    {
-      "degree": "Secondary Education (Class X), CBSE",
-      "place": "Father Agnel School, Vaishali, Uttar Pradesh, India",
-      "period": "Apr 2017 – Mar 2020"
-    }
-  ],
-  "research": [
-    {
-      "role": "Research Intern",
-      "place": "Albers Lab, Department of Neurology, Harvard Medical School & Massachusetts General Hospital, Boston, USA",
-      "period": "2025 – Present",
-      "note": "Working on olfactory function as a predictor of cognitive decline, pTDP-43 and dsRNA biomarkers in ALS, olfactory dysfunction and cerebrovascular risk, and COVID-19's link to incident dementia. Supervised by Mark W. Albers, MD, PhD."
-    },
-    {
-      "role": "Remote Collaborator",
-      "place": "Altalib Lab, Department of Neurology, Yale School of Medicine, New Haven, USA",
-      "period": "2025 – Present",
-      "note": "Systematic reviews and network meta-analyses on headache burden in epilepsy, glymphatic system dysfunction, and sleep disorder treatments in epilepsy."
-    },
-    {
-      "role": "Computational Neuroscience Trainee",
-      "place": "Neuromatch Academy, IISc Bangalore, University of Zurich, and IIT Madras workshops",
-      "period": "2024 – 2025",
-      "note": "EEG/ECoG signal processing, BCI decoding, dynamic causal modeling, and machine learning for neural data — spanning motor imagery classification, seizure detection, and generative models of perception."
-    }
-  ],
-  "awards": [
-    {
-      "title": "Full scholarship, Alzheimer's Association International Conference (AAIC) 2026",
-      "place": "London, UK",
-      "period": "2026",
-      "note": "Covering travel, accommodation, and registration (~£2,500)."
-    },
-    {
-      "title": "Impact Scholars Program",
-      "place": "Neuromatch Academy",
-      "period": "2024 – 2025",
-      "note": "Selected for a 6-month research internship."
-    },
-    {
-      "title": "Full scholarship, Computational Neuroscience Course",
-      "place": "Neuromatch Academy",
-      "period": "2024"
-    },
-    {
-      "title": "Full scholarship, Computational Psychiatry Course",
-      "place": "University of Zurich",
-      "period": "2024"
-    },
-    {
-      "title": "Finalist, Pediatrics Case Presentation",
-      "place": "National Undergraduate Conference (CONNAISSANCE'24), JIPMER, Puducherry",
-      "period": "2024"
-    },
-    {
-      "title": "99.45 percentile, NEET",
-      "place": "Among 1.8 million test takers nationwide",
-      "period": ""
-    }
-  ]
-}
+<!-- About Section -->
+<section id="about">
+
+  <h2 class="glow-label">About Me</h2>
+  <p>
+    I'm a final year medical student at Government Medical College, Chennai, India, working at the intersection
+    of clinical neurology, computational neuroscience, and data science.
+  </p>
+  <p>
+    I'm particularly interested in using quantitative and computational approaches to understand
+    neurological disease, from identifying early, clinically meaningful biomarkers to developing
+    models that can improve classification, prediction, and ultimately patient care. Alongside
+    primary research, I work extensively with systematic reviews, meta-analyses, and network
+    meta-analyses to synthesize evidence across complex clinical questions.
+  </p>
+
+  <ul class="contact-links">
+    <li><a href="mailto:arkansh.neuro@gmail.com">Email</a></li>
+    <li><a href="https://scholar.google.com/citations?user=zbSFvVQAAAAJ" target="_blank">Google Scholar</a></li>
+    <li><a href="https://linkedin.com/in/arkanshsharma" target="_blank">LinkedIn</a></li>
+    <li><a href="https://researchgate.net/profile/Arkansh-Sharma-2" target="_blank">ResearchGate</a></li>
+    <li><a href="https://x.com/sharma_arkansh" target="_blank">Twitter / X</a></li>
+    <li><a href="https://orcid.org/0009-0001-7472-5966" target="_blank">ORCID</a></li>
+  </ul>
+
+  <h2 class="glow-label">About This Site</h2>
+  <p>
+    This site is a record of the thinking behind my research.
+  </p>
+  <p>
+    It brings together working notes, analyses, partial results, methodological experiments,
+    and commentary from projects that are often still evolving. Some pages are polished;
+    others are deliberately not. The aim is not to reproduce my published papers, but to
+    document the questions, ideas, analyses, and decisions that sit behind them.
+  </p>
+  <p>
+    Think of it as a research notebook in public, something to be read alongside the papers,
+    rather than instead of them.
+  </p>
+
+</section>
+
+<style>
+  .glow-label {
+    display: inline-block;
+    color: #fff;
+    text-shadow:
+      0 0 6px rgba(255, 255, 255, 0.9),
+      0 0 14px rgba(180, 200, 255, 0.75),
+      0 0 30px rgba(120, 160, 255, 0.55),
+      0 0 55px rgba(80, 130, 255, 0.35);
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    margin-bottom: 0.5rem;
+  }
+
+  .contact-links {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.5rem;
+    margin: 1rem 0 1.5rem;
+  }
+
+  .contact-links a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    transition: border-color 0.2s;
+  }
+
+  .contact-links a:hover {
+    border-color: rgba(255, 255, 255, 0.9);
+  }
+</style>
