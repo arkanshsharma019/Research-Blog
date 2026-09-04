@@ -1,15 +1,38 @@
 {
   "photo": "profile.jpg",
   "name": "Arkansh Sharma",
-  "title": "Final year medical student, Government Medical College, Chennai",
-  "bio": "I'm a final year medical student at Government Medical College, Chennai, India, working at the intersection of clinical neurology, computational neuroscience, and data science. I'm particularly interested in using quantitative and computational approaches to understand neurological disease, from identifying early, clinically meaningful biomarkers to developing models that can improve classification, prediction, and ultimately patient care. Alongside primary research, I work extensively with systematic reviews, meta-analyses, and network meta-analyses to synthesize evidence across complex clinical questions.",
+  "bio": "I am based at Government Medical College, Chennai, India, working at the intersection of clinical neurology, computational neuroscience, and data science. I'm particularly interested in using quantitative and computational approaches to understand neurological disease, from identifying early, clinically meaningful biomarkers to developing models that can improve classification, prediction, and ultimately patient care. Alongside primary research, I work extensively with systematic reviews, meta-analyses, and network meta-analyses to synthesize evidence across complex clinical questions.",
   "contacts": [
-    { "label": "Email", "href": "mailto:arkansh.neuro@gmail.com", "value": "arkansh.neuro@gmail.com" },
-    { "label": "Google Scholar", "href": "https://scholar.google.com/citations?user=zbSFvVQAAAAJ", "value": "Google Scholar" },
-    { "label": "LinkedIn", "href": "https://linkedin.com/in/arkanshsharma", "value": "LinkedIn" },
-    { "label": "ResearchGate", "href": "https://researchgate.net/profile/Arkansh-Sharma-2", "value": "ResearchGate" },
-    { "label": "Twitter / X", "href": "https://x.com/sharma_arkansh", "value": "Twitter / X" },
-    { "label": "ORCID", "href": "https://orcid.org/0009-0001-7472-5966", "value": "ORCID" }
+    {
+      "label": "Email",
+      "href": "mailto:arkansh.neuro@gmail.com",
+      "value": "arkansh.neuro@gmail.com"
+    },
+    {
+      "label": "Google Scholar",
+      "href": "https://scholar.google.com/citations?user=zbSFvVQAAAAJ",
+      "value": "Google Scholar"
+    },
+    {
+      "label": "LinkedIn",
+      "href": "https://linkedin.com/in/arkanshsharma",
+      "value": "LinkedIn"
+    },
+    {
+      "label": "ResearchGate",
+      "href": "https://researchgate.net/profile/Arkansh-Sharma-2",
+      "value": "ResearchGate"
+    },
+    {
+      "label": "Twitter / X",
+      "href": "https://x.com/sharma_arkansh",
+      "value": "Twitter / X"
+    },
+    {
+      "label": "ORCID",
+      "href": "https://orcid.org/0009-0001-7472-5966",
+      "value": "ORCID"
+    }
   ],
   "education": [],
   "research": [],
