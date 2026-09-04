@@ -76,25 +76,29 @@
       "period": "2026",
       "title": "AAIC Full Scholarship",
       "place": "Alzheimer's Association International Conference (AAIC) 2026, London, UK",
-      "note": "Full scholarship covering travel, accommodation, and registration (~£2,500) for oral presentation, July 12–15, 2026."
+      "note": "Full scholarship covering travel, accommodation, and registration (~£2,500) for oral presentation, July 12–15, 2026.",
+      "image": "aaic.png"
     },
     {
       "period": "2024 – 2025",
       "title": "Impact Scholars Program",
       "place": "Neuromatch Academy",
-      "note": "Selected for a 6-month internship."
+      "note": "Selected for a 6-month internship.",
+      "image": "match.png"
     },
     {
       "period": "2024",
       "title": "Full Scholarship — Computational Neuroscience Course",
       "place": "Neuromatch Academy",
-      "note": ""
+      "note": "",
+      "image": "match.png"
     },
     {
       "period": "2024",
       "title": "Full Scholarship — Computational Psychiatry Course",
       "place": "University of Zurich",
-      "note": ""
+      "note": "",
+      "image": "zurich.png"
     }
   ]
 }
