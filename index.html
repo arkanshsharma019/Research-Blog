@@ -224,11 +224,8 @@ function entryHtml(p, i){
       <div class="entry-num">${String(i+1).padStart(2,'0')}</div>
       <div>
         <h3 class="entry-title">${p.title}</h3>
-        <p class="entry-abstract">${p.abstract}</p>
         <div class="entry-meta">
           <span>${fmtDate(p.date)}</span>
-          <span>${p.readTime}</span>
-          ${p.tags.map(t=>`<span class="tag">#${t}</span>`).join('')}
         </div>
       </div>
     </article>
@@ -307,11 +304,8 @@ async function renderPost(id){
       <div class="post-head">
         <div class="post-meta-row">
           <span>${fmtDate(p.date)}</span>
-          <span>${p.readTime}</span>
-          <span>${p.tags.map(t=>'#'+t).join(' ')}</span>
         </div>
         <h1>${p.title}</h1>
-        <p class="post-abstract">${p.abstract}</p>
       </div>
       <div class="post-body">${bodyHtml}</div>
       <div class="post-foot">
