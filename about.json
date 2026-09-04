@@ -1,159 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Arkansh Sharma</title>
-    <style>
-        /* --- General Body Styling (Just for preview purposes) --- */
-        body {
-            background-color: #121212; /* Assuming dark mode based on previous text colors */
-            color: #e0e0e0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.6;
-            padding: 2rem;
-        }
-
-        /* --- About Section Styles --- */
-        
-        /* Generic utility class for the glow effect */
-        .glow-effect {
-            text-shadow: 
-                0 0 6px rgba(255, 255, 255, 0.9),
-                0 0 14px rgba(180, 200, 255, 0.75),
-                0 0 30px rgba(120, 160, 255, 0.55),
-                0 0 55px rgba(80, 130, 255, 0.35);
-        }
-
-        .about-section .section-subtitle {
-            display: inline-block;
-            color: #fff;
-            font-weight: 600;
-            letter-spacing: 0.03em;
-            margin-bottom: 0.5rem;
-            margin-top: 2rem; 
-        }
-
-        .about-section .section-subtitle:first-of-type {
-            margin-top: 0;
-        }
-
-        .about-section p {
-            margin-bottom: 1rem;
-        }
-
-        /* --- New Table-like Contact Links --- */
-        .about-section .contact-table {
-            list-style: none;
-            padding: 0;
-            margin: 2.5rem 0;
-            width: 100%;
-            max-width: 700px; /* Keeps the list from stretching too wide on large screens */
-            border-top: 1px solid rgba(255, 255, 255, 0.2); /* Top divider line */
-        }
-
-        .about-section .contact-table li {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.2rem 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Row divider lines */
-        }
-
-        .about-section .contact-table .contact-label {
-            font-weight: 500;
-            color: #f5f5f5;
-        }
-
-        .about-section .contact-table .contact-value {
-            text-decoration: none;
-            /* Adapted the dark green from your image to a bright teal for dark mode readability */
-            color: #4db6ac; 
-            text-align: right;
-            transition: color 0.2s ease, opacity 0.2s ease;
-        }
-
-        .about-section .contact-table .contact-value:hover {
-            color: #80cbc4;
-            opacity: 0.8;
-        }
-
-        /* Responsive: Stack the label and link on small mobile screens */
-        @media (max-width: 500px) {
-            .about-section .contact-table li {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 0.5rem;
-                padding: 1rem 0;
-            }
-            .about-section .contact-table .contact-value {
-                text-align: left;
-            }
-        }
-    </style>
-</head>
-<body>
-
-    <!-- About Section -->
-    <section id="about" class="about-section">
-
-        <h3 class="section-subtitle glow-effect">About Me</h3>
-        <p>
-            I'm a final year medical student at Government Medical College, Chennai, India, working at the intersection
-            of clinical neurology, computational neuroscience, and data science.
-        </p>
-        <p>
-            I'm particularly interested in using quantitative and computational approaches to understand
-            neurological disease, from identifying early, clinically meaningful biomarkers to developing
-            models that can improve classification, prediction, and ultimately patient care. Alongside
-            primary research, I work extensively with systematic reviews, meta-analyses, and network
-            meta-analyses to synthesize evidence across complex clinical questions.
-        </p>
-
-        <!-- New Layout added here -->
-        <ul class="contact-table">
-            <li>
-                <span class="contact-label">Email</span>
-                <a href="mailto:arkansh.neuro@gmail.com" class="contact-value">arkansh.neuro@gmail.com</a>
-            </li>
-            <li>
-                <span class="contact-label">Google Scholar</span>
-                <a href="https://scholar.google.com/citations?user=zbSFvVQAAAAJ" target="_blank" class="contact-value">scholar.google.com</a>
-            </li>
-            <li>
-                <span class="contact-label">LinkedIn</span>
-                <a href="https://linkedin.com/in/arkanshsharma" target="_blank" class="contact-value">linkedin.com/in/arkanshsharma</a>
-            </li>
-            <li>
-                <span class="contact-label">ResearchGate</span>
-                <a href="https://researchgate.net/profile/Arkansh-Sharma-2" target="_blank" class="contact-value">researchgate.net</a>
-            </li>
-            <li>
-                <span class="contact-label">Twitter / X</span>
-                <a href="https://x.com/sharma_arkansh" target="_blank" class="contact-value">@sharma_arkansh</a>
-            </li>
-            <li>
-                <span class="contact-label">ORCID</span>
-                <a href="https://orcid.org/0009-0001-7472-5966" target="_blank" class="contact-value">0009-0001-7472-5966</a>
-            </li>
-        </ul>
-
-        <h3 class="section-subtitle glow-effect">About This Site</h3>
-        <p>
-            This site is a record of the thinking behind my research.
-        </p>
-        <p>
-            It brings together working notes, analyses, partial results, methodological experiments,
-            and commentary from projects that are often still evolving. Some pages are polished;
-            others are deliberately not. The aim is not to reproduce my published papers, but to
-            document the questions, ideas, analyses, and decisions that sit behind them.
-        </p>
-        <p>
-            Think of it as a research notebook in public, something to be read alongside the papers,
-            rather than instead of them.
-        </p>
-
-    </section>
-
-</body>
-</html>
+{
+  "photo": "profile.jpg",
+  "name": "Arkansh Sharma",
+  "title": "Final year medical student, Government Medical College, Chennai",
+  "bio": "I'm a final year medical student at Government Medical College, Chennai, India, working at the intersection of clinical neurology, computational neuroscience, and data science. I'm particularly interested in using quantitative and computational approaches to understand neurological disease, from identifying early, clinically meaningful biomarkers to developing models that can improve classification, prediction, and ultimately patient care. Alongside primary research, I work extensively with systematic reviews, meta-analyses, and network meta-analyses to synthesize evidence across complex clinical questions.",
+  "contacts": [
+    { "label": "Email", "href": "mailto:arkansh.neuro@gmail.com", "value": "arkansh.neuro@gmail.com" },
+    { "label": "Google Scholar", "href": "https://scholar.google.com/citations?user=zbSFvVQAAAAJ", "value": "Google Scholar" },
+    { "label": "LinkedIn", "href": "https://linkedin.com/in/arkanshsharma", "value": "LinkedIn" },
+    { "label": "ResearchGate", "href": "https://researchgate.net/profile/Arkansh-Sharma-2", "value": "ResearchGate" },
+    { "label": "Twitter / X", "href": "https://x.com/sharma_arkansh", "value": "Twitter / X" },
+    { "label": "ORCID", "href": "https://orcid.org/0009-0001-7472-5966", "value": "ORCID" }
+  ],
+  "education": [],
+  "research": [],
+  "awards": []
+}
