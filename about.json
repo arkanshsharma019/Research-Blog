@@ -1,0 +1,10 @@
+{
+  "intro": "This site collects working notes, partial results, and commentary that accompany an ongoing research project. It is meant to be read alongside the paper, not instead of it.",
+  "bio": "Replace this paragraph with a short bio: your name, affiliation, and the broad question your research is about. Two or three sentences is plenty.",
+  "contacts": [
+    {"label": "Email", "value": "you@university.edu", "href": "mailto:you@university.edu"},
+    {"label": "Preprint / paper", "value": "arXiv link", "href": "#"},
+    {"label": "Code", "value": "GitHub repo", "href": "#"},
+    {"label": "Scholar", "value": "Google Scholar", "href": "#"}
+  ]
+}

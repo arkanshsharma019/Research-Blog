@@ -1,0 +1,18 @@
+[
+  {
+    "id": "first-result",
+    "title": "An early result worth sharing",
+    "date": "2026-08-27",
+    "tags": ["results", "draft"],
+    "readTime": "5 min",
+    "abstract": "Placeholder post showing how a results write-up can look: a figure reference, a claim, and the caveats that go with it."
+  },
+  {
+    "id": "why-this-blog-exists",
+    "title": "Why this research blog exists",
+    "date": "2026-08-20",
+    "tags": ["meta"],
+    "readTime": "3 min",
+    "abstract": "A short note on what this space is for: informal write-ups that sit between the lab notebook and the paper."
+  }
+]
