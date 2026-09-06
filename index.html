@@ -8,17 +8,17 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
-    /* Muted Scientific Palette */
-    --paper: #E5E5E5;          /* Muted grey background */
-    --paper-raised: #FFDC91;   /* Pale Yellow for code blocks/raised areas */
+    /* Muted Scientific Palette (slightly brightened) */
+    --paper: #ECECEC;          /* Lightened grey background */
+    --paper-raised: #FFE4A3;   /* Slightly brighter pale yellow for code blocks/raised areas */
     --ink: #1A1A1A;            /* Dark grey for readable primary text */
-    --ink-soft: #7876B1;       /* Muted Purple for secondary text/meta */
-    --rule: #6F99AD;           /* Grey-Blue for dividers and borders */
-    --signal: #0072B5;         /* Muted Blue for primary accents/headers */
-    --pulse: #E18727;          /* Muted Orange for interactive hovers */
-    --amber: #BC3C29;          /* Muted Red for active states and selections */
-    --teal: #20854E;           /* Muted Green for tags and alternate accents */
-    
+    --ink-soft: #8B89C4;       /* Brighter muted purple for secondary text/meta */
+    --rule: #7FACC0;           /* Brighter grey-blue for dividers and borders */
+    --signal: #0C86D6;         /* Brighter muted blue for primary accents/headers */
+    --pulse: #F0983A;          /* Brighter muted orange for interactive hovers */
+    --amber: #D14A38;          /* Brighter muted red for active states and selections */
+    --teal: #2AA362;           /* Brighter muted green for tags and alternate accents */
+
     /* Typography */
     --display: 'Space Grotesk', 'IBM Plex Sans', sans-serif;
     --serif: 'IBM Plex Sans', Georgia, sans-serif;
@@ -251,7 +251,7 @@ async function renderHome(){
       <section class="hero">
         <div>
           <h1>Notes from an ongoing research project.</h1>
-          <p class="lede">Working notes, partial results, and commentary that accompany the paper — read alongside it, not instead of it.</p>
+          <p class="lede">Every project has a story. This is a collection of the work behind mine.</p>
           <button class="cta" data-nav="archive">Read the archive →</button>
         </div>
         <div class="hero-side">
@@ -342,7 +342,7 @@ function cvItem(period, title, place, note, image){
 async function renderAbout(){
   try{
     const about = await getAbout();
-    
+
     app.innerHTML = `
       <div class="profile-row">
         <img class="profile-photo" src="${about.photo}" alt="${about.name}">
@@ -350,7 +350,7 @@ async function renderAbout(){
           <h1>${about.name}</h1>
           ${about.title ? `<p class="profile-title">${about.title}</p>` : ''}
           <p>${about.bio}</p>
-          
+
           <table class="contact-table">
             <tbody>
               ${about.contacts.map(c=>`
@@ -361,7 +361,7 @@ async function renderAbout(){
               `).join('')}
             </tbody>
           </table>
-          
+
         </div>
       </div>
 
