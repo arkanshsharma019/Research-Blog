@@ -8,16 +8,16 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
-    /* Brighter, more vibrant palette */
-    --paper: #FFFFFF;          /* Pure white for a brighter background */
-    --paper-raised: #FFF3C4;   /* Brighter pale yellow */
-    --ink: #111827;            /* Darker, sharper text for contrast */
-    --ink-soft: #4F46E5;       /* Bright indigo instead of muted purple */
-    --rule: #D1D5DB;           /* Clean, light grey for dividers */
-    --signal: #0EA5E9;         /* Vibrant sky blue */
-    --pulse: #F97316;          /* Vibrant orange */
-    --amber: #EF4444;          /* Bright red */
-    --teal: #10B981;           /* Bright mint green */
+    /* Muted Scientific Palette (slightly brightened) */
+    --paper: #ECECEC;          /* Lightened grey background */
+    --paper-raised: #FFE4A3;   /* Slightly brighter pale yellow for code blocks/raised areas */
+    --ink: #1A1A1A;            /* Dark grey for readable primary text */
+    --ink-soft: #8B89C4;       /* Brighter muted purple for secondary text/meta */
+    --rule: #7FACC0;           /* Brighter grey-blue for dividers and borders */
+    --signal: #1E9CF2;         /* Brighter muted blue for primary accents/headers */
+    --pulse: #FFA94D;          /* Brighter muted orange for interactive hovers */
+    --amber: #D14A38;          /* Brighter muted red for active states and selections */
+    --teal: #2AA362;           /* Brighter muted green for tags and alternate accents */
 
     /* Typography */
     --display: 'Space Grotesk', 'IBM Plex Sans', sans-serif;
@@ -31,7 +31,7 @@
   a{color:inherit;}
   ::selection{background:var(--amber); color:var(--paper);}
   a:focus-visible, button:focus-visible{outline:2px solid var(--teal); outline-offset:3px;}
-  .wrap{max-width:1200px; margin:0 auto; padding:0 28px;}
+  .wrap{max-width:1200px; margin:0 auto; padding:0 28px;} 
 
   header.masthead{border-bottom:1px solid var(--rule); border-top:3px solid var(--signal); padding:36px 0 0 0;}
   .masthead-row{display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:16px; padding-bottom:22px;}
@@ -44,25 +44,23 @@
 
   main{padding:40px 0 100px; min-height:40vh;}
 
-  /* --- STRICT LAYOUT: LEFT SIDEBAR, CENTER, RIGHT SIDEBAR --- */
+  /* --- HOMEPAGE LAYOUT --- */
   .home-layout {
     display: grid;
-    /* Forces left and right sidebars to be exactly 240px, center takes remaining space */
-    grid-template-columns: 240px minmax(0, 1fr) 240px; 
+    grid-template-columns: 240px 1fr 240px; 
     gap: 40px;
   }
-  
   @media (max-width: 960px) {
     .home-layout { grid-template-columns: 1fr; }
     .sidebar { display: none; }
   }
 
-  .hero{display:grid; grid-template-columns:1fr; gap:32px; padding-bottom:48px; border-bottom:1px solid var(--rule); margin-bottom:48px;}
+  .hero{display:grid; grid-template-columns:1fr; gap:48px; padding-bottom:48px; border-bottom:1px solid var(--rule); margin-bottom:48px;}
   .hero h1{font-size:2.6rem; line-height:1.12; font-weight:500; margin:0 0 18px; letter-spacing:-0.01em; color:var(--ink);}
   .hero p.lede{font-size:1.08rem; color:var(--ink-soft); line-height:1.6; max-width:52ch; margin:0 0 20px;}
   .hero .cta{font-family:var(--sans); font-size:0.92rem; display:inline-flex; gap:8px; align-items:center; text-decoration:none; color:var(--paper); background:var(--ink); padding:10px 16px; cursor:pointer; border:none;}
   .hero .cta:hover{background:var(--teal);}
-
+  
   .list-header{display:flex; justify-content:space-between; align-items:baseline; margin-bottom:22px;}
   .list-header h2{font-size:1.15rem; font-weight:500; margin:0;}
   .list-header span{font-family:var(--mono); font-size:0.75rem; color:var(--ink-soft);}
@@ -74,13 +72,14 @@
   .entry-title{font-size:1.28rem; font-weight:500; margin:0 0 8px; line-height:1.3; transition:color .15s ease;}
   .entry-abstract{color:var(--ink-soft); font-size:0.98rem; line-height:1.55; margin:0 0 10px; max-width:62ch;}
   .entry-meta{font-family:var(--sans); font-size:0.78rem; color:var(--ink-soft); display:flex; gap:14px; flex-wrap:wrap;}
+  .tag{font-family:var(--mono); font-size:0.72rem; color:var(--teal);}
 
-  /* --- POST & ABOUT PAGE STYLES (RESTORED) --- */
   .post-head{border-bottom:1px solid var(--rule); padding-bottom:28px; margin-bottom:32px;}
   .back-link{font-family:var(--sans); font-size:0.85rem; color:var(--ink-soft); text-decoration:none; cursor:pointer; display:inline-block; margin-bottom:22px; background:none; border:none; padding:0;}
   .back-link:hover{color:var(--amber);}
   .post-meta-row{font-family:var(--mono); font-size:0.75rem; color:var(--ink-soft); display:flex; gap:16px; margin-bottom:16px; flex-wrap:wrap;}
   .post-head h1{font-size:2.2rem; font-weight:500; line-height:1.2; margin:0 0 16px; max-width:22ch;}
+  .post-abstract{font-size:1.05rem; color:var(--ink-soft); line-height:1.65; max-width:64ch;}
   .post-body{max-width:68ch; font-size:1.08rem; line-height:1.75;}
   .post-body h2{font-size:1.35rem; font-weight:500; margin:38px 0 14px;}
   .post-body p{margin:0 0 18px;}
@@ -88,16 +87,18 @@
   .post-body code{font-family:var(--mono); background:var(--paper-raised); padding:2px 5px; font-size:0.9em; color:var(--ink);}
   .post-figure{margin:30px 0;}
   .post-figure img{width:100%; height:auto; display:block; border:1px solid var(--rule);}
+  .post-figure figcaption{font-family:var(--sans); font-size:0.85rem; color:var(--ink-soft); margin-top:8px; line-height:1.5;}
   .post-foot{margin-top:48px; padding-top:22px; border-top:1px solid var(--rule); font-family:var(--sans); font-size:0.85rem; color:var(--ink-soft);}
   .post-foot a{cursor:pointer; color:var(--teal); text-decoration:none;}
 
   .profile-row{display:grid; grid-template-columns:220px 1fr; gap:44px; padding-bottom:36px; border-bottom:1px solid var(--rule); margin-bottom:36px;}
   @media (max-width:700px){ .profile-row{grid-template-columns:1fr; text-align:left;} }
   .profile-photo{width:220px; height:220px; object-fit:cover; border:1px solid var(--rule); filter:grayscale(15%);}
+  @media (max-width:700px){ .profile-photo{width:150px; height:150px;} }
   .profile-info h1{font-size:2rem; font-weight:500; margin:0 0 4px; letter-spacing:-0.01em;}
   .profile-title{font-family:var(--sans); font-size:0.95rem; color:var(--signal); margin:0 0 18px;}
   .profile-info p{color:var(--ink-soft); line-height:1.7; font-size:1.02rem; margin:0 0 16px; max-width:58ch;}
-  
+
   .contact-table { width: 100%; border-collapse: collapse; margin-top: 28px; font-family: var(--sans); font-size: 0.95rem; }
   .contact-table tr { border-top: 1px solid var(--rule); }
   .contact-table tr:last-child { border-bottom: 1px solid var(--rule); }
@@ -117,36 +118,33 @@
   .cv-item:first-child{border-top:1px solid var(--rule);}
   .cv-place{font-family:var(--sans); font-size:0.85rem; color:var(--signal); margin:0 0 8px;}
   .cv-period{font-family:var(--mono); font-size:0.76rem; color:var(--ink-soft); padding-top:2px; display:flex; flex-direction:column; align-items:flex-start; gap:10px;}
+  .cv-logo{width:88px; height:88px; object-fit:contain;}
   .cv-item h3{font-size:1.05rem; font-weight:500; margin:0 0 5px; line-height:1.35;}
+  .cv-note{color:var(--ink-soft); font-size:0.95rem; line-height:1.6; margin:0; max-width:60ch;}
 
-  /* --- CONTINUOUS SCROLLING FILMSTRIP STYLES --- */
+  /* --- SLIDESHOW STYLES --- */
   .slideshow-container {
     position: relative;
     width: 100%;
-    height: 500px; /* Fixed equal height for sidebars */
+    height: 500px;
     overflow: hidden;
     border: 1px solid var(--rule);
     background: var(--paper-raised);
   }
-  
   .scroll-track {
     display: flex;
     flex-direction: column;
-    /* Controls the speed of the scroll */
-    animation: scrollVertical 20s linear infinite; 
+    /* Increased from 20s to 30s so the extra images don't scroll past too fast */
+    animation: scrollVertical 30s linear infinite; 
   }
-
   .scroll-track img {
     width: 100%;
-    height: 250px; /* Fixed height for each photo */
+    height: 250px;
     object-fit: cover;
     display: block;
     border-bottom: 2px solid var(--paper);
   }
-
-  /* Pauses on hover */
   .slideshow-container:hover .scroll-track { animation-play-state: paused; }
-
   @keyframes scrollVertical {
     0% { transform: translateY(0); }
     100% { transform: translateY(-50%); } 
@@ -198,7 +196,6 @@ async function getManifest(){
   return manifestCache;
 }
 
-/* RESTORED: Needed for Posts */
 async function getPost(id){
   if(postCache[id]) return postCache[id];
   const res = await fetch('posts/' + id + '.json');
@@ -208,7 +205,6 @@ async function getPost(id){
   return data;
 }
 
-/* RESTORED: Needed for About Page */
 async function getAbout(){
   const res = await fetch('about.json');
   if(!res.ok) throw new Error('Could not load about.json');
@@ -240,8 +236,13 @@ function entryHtml(p, i){
   `;
 }
 
-function emptyState(){ return `<div class="empty-note">No posts yet — add a file to /posts and list it in posts.json to publish here.</div>`; }
-function errorNote(msg){ return `<div class="error-note">${msg}</div>`; }
+function emptyState(){
+  return `<div class="empty-note">No posts yet — add a file to /posts and list it in posts.json to publish here.</div>`;
+}
+
+function errorNote(msg){
+  return `<div class="error-note">${msg}</div>`;
+}
 
 async function renderHome(){
   try{
@@ -258,12 +259,17 @@ async function renderHome(){
               <img src="a.png" alt="Slide 1">
               <img src="b.png" alt="Slide 2">
               <img src="c.png" alt="Slide 3">
-              <img src="image_f75c47.png" alt="Slide 4">
+              <img src="d.png" alt="Slide 4">
+              <img src="e.png" alt="Slide 5">
+              <img src="f.png" alt="Slide 6">
+              
               <!-- Group 2 (Duplicate for infinite loop) -->
               <img src="a.png" alt="Slide 1">
               <img src="b.png" alt="Slide 2">
               <img src="c.png" alt="Slide 3">
-              <img src="image_f75c47.png" alt="Slide 4">
+              <img src="d.png" alt="Slide 4">
+              <img src="e.png" alt="Slide 5">
+              <img src="f.png" alt="Slide 6">
             </div>
           </div>
         </aside>
@@ -293,12 +299,17 @@ async function renderHome(){
               <img src="a.png" alt="Slide 1">
               <img src="b.png" alt="Slide 2">
               <img src="c.png" alt="Slide 3">
-              <img src="image_f75c47.png" alt="Slide 4">
+              <img src="d.png" alt="Slide 4">
+              <img src="e.png" alt="Slide 5">
+              <img src="f.png" alt="Slide 6">
+              
               <!-- Group 2 (Duplicate for infinite loop) -->
               <img src="a.png" alt="Slide 1">
               <img src="b.png" alt="Slide 2">
               <img src="c.png" alt="Slide 3">
-              <img src="image_f75c47.png" alt="Slide 4">
+              <img src="d.png" alt="Slide 4">
+              <img src="e.png" alt="Slide 5">
+              <img src="f.png" alt="Slide 6">
             </div>
           </div>
         </aside>
@@ -327,7 +338,6 @@ async function renderArchive(){
   attachHandlers();
 }
 
-/* RESTORED: Post Rendering */
 async function renderPost(id){
   try{
     const posts = await getManifest();
@@ -362,7 +372,6 @@ async function renderPost(id){
   attachHandlers();
 }
 
-/* RESTORED: CV Items for About Page */
 function cvItem(period, title, place, note, image){
   return `
     <div class="cv-item">
@@ -379,7 +388,6 @@ function cvItem(period, title, place, note, image){
   `;
 }
 
-/* RESTORED: About Page Rendering */
 async function renderAbout(){
   try{
     const about = await getAbout();
@@ -402,6 +410,7 @@ async function renderAbout(){
               `).join('')}
             </tbody>
           </table>
+
         </div>
       </div>
 
