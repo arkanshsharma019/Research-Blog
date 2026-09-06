@@ -31,7 +31,7 @@
   a{color:inherit;}
   ::selection{background:var(--amber); color:var(--paper);}
   a:focus-visible, button:focus-visible{outline:2px solid var(--teal); outline-offset:3px;}
-  .wrap{max-width:1200px; /* Widened slightly to fit sidebars */ margin:0 auto; padding:0 28px;}
+  .wrap{max-width:1200px; margin:0 auto; padding:0 28px;}
 
   header.masthead{border-bottom:1px solid var(--rule); border-top:3px solid var(--signal); padding:36px 0 0 0;}
   .masthead-row{display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:16px; padding-bottom:22px;}
@@ -44,18 +44,17 @@
 
   main{padding:40px 0 100px; min-height:40vh;}
 
-  /* --- NEW LAYOUT: LEFT SIDEBAR, CENTER, RIGHT SIDEBAR --- */
+  /* --- STRICT LAYOUT: LEFT SIDEBAR, CENTER, RIGHT SIDEBAR --- */
   .home-layout {
     display: grid;
-    grid-template-columns: 220px 1fr 220px;
+    /* Forces left and right sidebars to be exactly 240px, center takes remaining space */
+    grid-template-columns: 240px minmax(0, 1fr) 240px; 
     gap: 40px;
   }
   
   @media (max-width: 960px) {
-    .home-layout {
-      grid-template-columns: 1fr; /* Stacks vertically on smaller screens */
-    }
-    .sidebar { display: none; } /* Optional: hides sidebars on mobile */
+    .home-layout { grid-template-columns: 1fr; }
+    .sidebar { display: none; }
   }
 
   .hero{display:grid; grid-template-columns:1fr; gap:32px; padding-bottom:48px; border-bottom:1px solid var(--rule); margin-bottom:48px;}
@@ -63,12 +62,6 @@
   .hero p.lede{font-size:1.08rem; color:var(--ink-soft); line-height:1.6; max-width:52ch; margin:0 0 20px;}
   .hero .cta{font-family:var(--sans); font-size:0.92rem; display:inline-flex; gap:8px; align-items:center; text-decoration:none; color:var(--paper); background:var(--ink); padding:10px 16px; cursor:pointer; border:none;}
   .hero .cta:hover{background:var(--teal);}
-  
-  .hero-side{font-family:var(--sans); font-size:0.88rem; color:var(--ink-soft); border-left:1px solid var(--rule); padding-left:28px;}
-  .hero-side h2{font-family:var(--mono); font-size:0.72rem; color:var(--ink); margin:0 0 12px; font-weight:500;}
-  .hero-side ul{list-style:none; margin:0; padding:0;}
-  .hero-side li{padding:8px 0; border-bottom:1px dashed var(--rule);}
-  .hero-side li:last-child{border-bottom:none;}
 
   .list-header{display:flex; justify-content:space-between; align-items:baseline; margin-bottom:22px;}
   .list-header h2{font-size:1.15rem; font-weight:500; margin:0;}
@@ -82,40 +75,81 @@
   .entry-abstract{color:var(--ink-soft); font-size:0.98rem; line-height:1.55; margin:0 0 10px; max-width:62ch;}
   .entry-meta{font-family:var(--sans); font-size:0.78rem; color:var(--ink-soft); display:flex; gap:14px; flex-wrap:wrap;}
 
-  /* --- NEW SLIDESHOW STYLES --- */
+  /* --- POST & ABOUT PAGE STYLES (RESTORED) --- */
+  .post-head{border-bottom:1px solid var(--rule); padding-bottom:28px; margin-bottom:32px;}
+  .back-link{font-family:var(--sans); font-size:0.85rem; color:var(--ink-soft); text-decoration:none; cursor:pointer; display:inline-block; margin-bottom:22px; background:none; border:none; padding:0;}
+  .back-link:hover{color:var(--amber);}
+  .post-meta-row{font-family:var(--mono); font-size:0.75rem; color:var(--ink-soft); display:flex; gap:16px; margin-bottom:16px; flex-wrap:wrap;}
+  .post-head h1{font-size:2.2rem; font-weight:500; line-height:1.2; margin:0 0 16px; max-width:22ch;}
+  .post-body{max-width:68ch; font-size:1.08rem; line-height:1.75;}
+  .post-body h2{font-size:1.35rem; font-weight:500; margin:38px 0 14px;}
+  .post-body p{margin:0 0 18px;}
+  .post-body blockquote{margin:26px 0; padding-left:20px; border-left:2px solid var(--amber); color:var(--ink-soft); font-style:italic;}
+  .post-body code{font-family:var(--mono); background:var(--paper-raised); padding:2px 5px; font-size:0.9em; color:var(--ink);}
+  .post-figure{margin:30px 0;}
+  .post-figure img{width:100%; height:auto; display:block; border:1px solid var(--rule);}
+  .post-foot{margin-top:48px; padding-top:22px; border-top:1px solid var(--rule); font-family:var(--sans); font-size:0.85rem; color:var(--ink-soft);}
+  .post-foot a{cursor:pointer; color:var(--teal); text-decoration:none;}
+
+  .profile-row{display:grid; grid-template-columns:220px 1fr; gap:44px; padding-bottom:36px; border-bottom:1px solid var(--rule); margin-bottom:36px;}
+  @media (max-width:700px){ .profile-row{grid-template-columns:1fr; text-align:left;} }
+  .profile-photo{width:220px; height:220px; object-fit:cover; border:1px solid var(--rule); filter:grayscale(15%);}
+  .profile-info h1{font-size:2rem; font-weight:500; margin:0 0 4px; letter-spacing:-0.01em;}
+  .profile-title{font-family:var(--sans); font-size:0.95rem; color:var(--signal); margin:0 0 18px;}
+  .profile-info p{color:var(--ink-soft); line-height:1.7; font-size:1.02rem; margin:0 0 16px; max-width:58ch;}
+  
+  .contact-table { width: 100%; border-collapse: collapse; margin-top: 28px; font-family: var(--sans); font-size: 0.95rem; }
+  .contact-table tr { border-top: 1px solid var(--rule); }
+  .contact-table tr:last-child { border-bottom: 1px solid var(--rule); }
+  .contact-table td { padding: 14px 0; color: var(--ink); }
+  .contact-table td:last-child { text-align: right; }
+  .contact-table a { text-decoration: none; color: var(--teal); transition: color 0.15s ease; }
+  .contact-table a:hover { color: var(--pulse); }
+
+  .cv-tabs{display:flex; gap:2px; margin-bottom:28px; border-bottom:1px solid var(--rule); font-family:var(--sans);}
+  .cv-tab{background:none; border:none; padding:10px 18px 12px; font-size:0.92rem; color:var(--ink-soft); cursor:pointer; border-bottom:2px solid transparent; margin-bottom:-1px; font-family:var(--sans);}
+  .cv-tab:hover{color:var(--ink);}
+  .cv-tab.active{color:var(--ink); border-bottom-color:var(--pulse);}
+  .cv-panel{display:none;}
+  .cv-panel.active{display:block;}
+  .cv-item{display:grid; grid-template-columns:150px 1fr; gap:22px; padding:20px 0; border-bottom:1px solid var(--rule);}
+  @media (max-width:700px){ .cv-item{grid-template-columns:1fr; gap:4px;} }
+  .cv-item:first-child{border-top:1px solid var(--rule);}
+  .cv-place{font-family:var(--sans); font-size:0.85rem; color:var(--signal); margin:0 0 8px;}
+  .cv-period{font-family:var(--mono); font-size:0.76rem; color:var(--ink-soft); padding-top:2px; display:flex; flex-direction:column; align-items:flex-start; gap:10px;}
+  .cv-item h3{font-size:1.05rem; font-weight:500; margin:0 0 5px; line-height:1.35;}
+
+  /* --- CONTINUOUS SCROLLING FILMSTRIP STYLES --- */
   .slideshow-container {
     position: relative;
     width: 100%;
-    height: 350px; 
-    border: 1px solid var(--rule);
+    height: 500px; /* Fixed equal height for sidebars */
     overflow: hidden;
-    background: #f4f4f4; /* placeholder color if image doesn't load */
+    border: 1px solid var(--rule);
+    background: var(--paper-raised);
   }
   
-  .slideshow-container img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0;
-    animation: fadeCycle 12s infinite; /* 12 seconds total for 4 images */
+  .scroll-track {
+    display: flex;
+    flex-direction: column;
+    /* Controls the speed of the scroll */
+    animation: scrollVertical 20s linear infinite; 
   }
 
-  /* Delay for each image to create the sequence */
-  .slideshow-container img:nth-child(1) { animation-delay: 0s; }
-  .slideshow-container img:nth-child(2) { animation-delay: 3s; }
-  .slideshow-container img:nth-child(3) { animation-delay: 6s; }
-  .slideshow-container img:nth-child(4) { animation-delay: 9s; }
+  .scroll-track img {
+    width: 100%;
+    height: 250px; /* Fixed height for each photo */
+    object-fit: cover;
+    display: block;
+    border-bottom: 2px solid var(--paper);
+  }
 
-  /* Animation logic for rotation */
-  @keyframes fadeCycle {
-    0%   { opacity: 0; }
-    5%   { opacity: 1; }
-    25%  { opacity: 1; }
-    30%  { opacity: 0; }
-    100% { opacity: 0; }
+  /* Pauses on hover */
+  .slideshow-container:hover .scroll-track { animation-play-state: paused; }
+
+  @keyframes scrollVertical {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-50%); } 
   }
 
   footer{border-top:1px solid var(--rule); padding:24px 0 40px; font-family:var(--mono); font-size:0.72rem; color:var(--ink-soft); display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;}
@@ -164,6 +198,23 @@ async function getManifest(){
   return manifestCache;
 }
 
+/* RESTORED: Needed for Posts */
+async function getPost(id){
+  if(postCache[id]) return postCache[id];
+  const res = await fetch('posts/' + id + '.json');
+  if(!res.ok) throw new Error('Could not load post: ' + id);
+  const data = await res.json();
+  postCache[id] = data;
+  return data;
+}
+
+/* RESTORED: Needed for About Page */
+async function getAbout(){
+  const res = await fetch('about.json');
+  if(!res.ok) throw new Error('Could not load about.json');
+  return res.json();
+}
+
 function fmtDate(d){
   return new Date(d).toLocaleDateString('en-US', {year:'numeric', month:'short', day:'numeric'});
 }
@@ -189,30 +240,31 @@ function entryHtml(p, i){
   `;
 }
 
-function emptyState(){
-  return `<div class="empty-note">No posts yet — add a file to /posts and list it in posts.json to publish here.</div>`;
-}
-
-function errorNote(msg){
-  return `<div class="error-note">${msg}</div>`;
-}
+function emptyState(){ return `<div class="empty-note">No posts yet — add a file to /posts and list it in posts.json to publish here.</div>`; }
+function errorNote(msg){ return `<div class="error-note">${msg}</div>`; }
 
 async function renderHome(){
   try{
     const posts = await getManifest();
-    const latest = posts.slice(0,4);
     
-    // The new grid layout applies here
     app.innerHTML = `
       <div class="home-layout">
         
-        <!-- LEFT SIDEBAR SLIDESHOW -->
+        <!-- LEFT SIDEBAR -->
         <aside class="sidebar sidebar-left">
           <div class="slideshow-container">
-            <img src="a.png" alt="Slide 1">
-            <img src="b.png" alt="Slide 2">
-            <img src="c.png" alt="Slide 3">
-            <img src="image_f75c47.png" alt="Slide 4">
+            <div class="scroll-track">
+              <!-- Group 1 -->
+              <img src="a.png" alt="Slide 1">
+              <img src="b.png" alt="Slide 2">
+              <img src="c.png" alt="Slide 3">
+              <img src="image_f75c47.png" alt="Slide 4">
+              <!-- Group 2 (Duplicate for infinite loop) -->
+              <img src="a.png" alt="Slide 1">
+              <img src="b.png" alt="Slide 2">
+              <img src="c.png" alt="Slide 3">
+              <img src="image_f75c47.png" alt="Slide 4">
+            </div>
           </div>
         </aside>
 
@@ -233,13 +285,21 @@ async function renderHome(){
           ${posts.length ? posts.map(entryHtml).join('') : emptyState()}
         </div>
 
-        <!-- RIGHT SIDEBAR SLIDESHOW -->
+        <!-- RIGHT SIDEBAR -->
         <aside class="sidebar sidebar-right">
           <div class="slideshow-container">
-            <img src="a.png" alt="Slide 1">
-            <img src="b.png" alt="Slide 2">
-            <img src="c.png" alt="Slide 3">
-            <img src="image_f75c47.png" alt="Slide 4">
+            <div class="scroll-track">
+              <!-- Group 1 -->
+              <img src="a.png" alt="Slide 1">
+              <img src="b.png" alt="Slide 2">
+              <img src="c.png" alt="Slide 3">
+              <img src="image_f75c47.png" alt="Slide 4">
+              <!-- Group 2 (Duplicate for infinite loop) -->
+              <img src="a.png" alt="Slide 1">
+              <img src="b.png" alt="Slide 2">
+              <img src="c.png" alt="Slide 3">
+              <img src="image_f75c47.png" alt="Slide 4">
+            </div>
           </div>
         </aside>
 
@@ -263,6 +323,114 @@ async function renderArchive(){
     `;
   }catch(e){
     app.innerHTML = errorNote('Could not load posts.json.');
+  }
+  attachHandlers();
+}
+
+/* RESTORED: Post Rendering */
+async function renderPost(id){
+  try{
+    const posts = await getManifest();
+    const idx = posts.findIndex(p=>p.id===id);
+    if(idx === -1){ await renderArchive(); return; }
+    const p = await getPost(id);
+    const bodyHtml = p.body.map(b=>{
+      if(b.type==='h2') return `<h2>${b.text}</h2>`;
+      if(b.type==='quote') return `<blockquote>${b.text}</blockquote>`;
+      if(b.type==='image') return `<figure class="post-figure"><img src="${b.src}" alt="${b.alt||''}">${b.caption ? `<figcaption>${b.caption}</figcaption>` : ''}</figure>`;
+      return `<p>${b.text}</p>`;
+    }).join('');
+    const prev = posts[idx+1];
+    const next = posts[idx-1];
+    app.innerHTML = `
+      <button class="back-link" data-nav="archive">← Back to archive</button>
+      <div class="post-head">
+        <div class="post-meta-row">
+          <span>${fmtDate(p.date)}</span>
+        </div>
+        <h1>${p.title}</h1>
+      </div>
+      <div class="post-body">${bodyHtml}</div>
+      <div class="post-foot">
+        ${prev ? `<div>Next: <a data-post="${prev.id}">${prev.title}</a></div>` : ''}
+        ${next ? `<div style="margin-top:6px;">Previous: <a data-post="${next.id}">${next.title}</a></div>` : ''}
+      </div>
+    `;
+  }catch(e){
+    app.innerHTML = errorNote('Could not load this post. Check that posts/' + id + '.json exists.');
+  }
+  attachHandlers();
+}
+
+/* RESTORED: CV Items for About Page */
+function cvItem(period, title, place, note, image){
+  return `
+    <div class="cv-item">
+      <div class="cv-period">
+        ${image ? `<img class="cv-logo" src="${image}" alt="">` : ''}
+        <span>${period}</span>
+      </div>
+      <div>
+        <h3>${title}</h3>
+        <p class="cv-place">${place}</p>
+        ${note ? `<p class="cv-note">${note}</p>` : ''}
+      </div>
+    </div>
+  `;
+}
+
+/* RESTORED: About Page Rendering */
+async function renderAbout(){
+  try{
+    const about = await getAbout();
+
+    app.innerHTML = `
+      <div class="profile-row">
+        <img class="profile-photo" src="${about.photo}" alt="${about.name}">
+        <div class="profile-info">
+          <h1>${about.name}</h1>
+          ${about.title ? `<p class="profile-title">${about.title}</p>` : ''}
+          <p>${about.bio}</p>
+
+          <table class="contact-table">
+            <tbody>
+              ${about.contacts.map(c=>`
+                <tr>
+                  <td>${c.label}</td>
+                  <td><a href="${c.href}" target="_blank" rel="noopener">${c.value}</a></td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="cv-tabs">
+        <button class="cv-tab active" data-tab="education">Education</button>
+        <button class="cv-tab" data-tab="research">Research Experience</button>
+        <button class="cv-tab" data-tab="awards">Awards</button>
+      </div>
+
+      <div class="cv-panel active" id="panel-education">
+        ${about.education.map(e=>cvItem(e.period, e.degree, e.place, e.note, e.image)).join('')}
+      </div>
+      <div class="cv-panel" id="panel-research">
+        ${about.research.map(r=>cvItem(r.period, r.role, r.place, r.note, r.image)).join('')}
+      </div>
+      <div class="cv-panel" id="panel-awards">
+        ${about.awards.map(a=>cvItem(a.period, a.title, a.place, a.note, a.image)).join('')}
+      </div>
+    `;
+    document.querySelectorAll('.cv-tab').forEach(btn=>{
+      btn.onclick = ()=>{
+        document.querySelectorAll('.cv-tab').forEach(b=>b.classList.remove('active'));
+        document.querySelectorAll('.cv-panel').forEach(p=>p.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById('panel-'+btn.dataset.tab).classList.add('active');
+      };
+    });
+  }catch(e){
+    app.innerHTML = errorNote('Could not load about.json.');
   }
   attachHandlers();
 }
@@ -293,6 +461,11 @@ async function router(){
     await renderHome(); highlightNav('home');
   } else if(hash === '#/archive'){
     await renderArchive(); highlightNav('archive');
+  } else if(hash === '#/about'){
+    await renderAbout(); highlightNav('about');
+  } else if(hash.startsWith('#/post/')){
+    await renderPost(hash.replace('#/post/',''));
+    highlightNav('');
   } else {
     await renderHome(); highlightNav('home');
   }
