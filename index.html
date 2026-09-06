@@ -46,8 +46,8 @@
 
   .hero{display:grid; grid-template-columns:1.3fr 1fr; gap:48px; padding-bottom:48px; border-bottom:1px solid var(--rule); margin-bottom:48px;}
   @media (max-width:760px){ .hero{grid-template-columns:1fr;} }
-  .hero h1{font-size:2.6rem; line-height:1.12; font-weight:500; margin:0 0 18px; letter-spacing:-0.01em; color:var(--signal);}
-  .hero p.lede{font-size:1.08rem; color:var(--pulse); line-height:1.6; max-width:52ch; margin:0 0 20px;}
+  .hero h1{font-size:2.6rem; line-height:1.12; font-weight:500; margin:0 0 18px; letter-spacing:-0.01em; color:var(--ink);}
+  .hero p.lede{font-size:1.08rem; color:var(--ink-soft); line-height:1.6; max-width:52ch; margin:0 0 20px;}
   .hero .cta{font-family:var(--sans); font-size:0.92rem; display:inline-flex; gap:8px; align-items:center; text-decoration:none; color:var(--paper); background:var(--ink); padding:10px 16px; cursor:pointer; border:none;}
   .hero .cta:hover{background:var(--teal);}
   .hero-side{font-family:var(--sans); font-size:0.88rem; color:var(--ink-soft); border-left:1px solid var(--rule); padding-left:28px;}
@@ -139,45 +139,32 @@
   .cv-item h3{font-size:1.05rem; font-weight:500; margin:0 0 5px; line-height:1.35;}
   .cv-note{color:var(--ink-soft); font-size:0.95rem; line-height:1.6; margin:0; max-width:60ch;}
 
-  /* Floating side images */
-  .side-photos{
-    position:fixed;
-    top:0;
-    height:100vh;
-    width:150px;
-    pointer-events:none;
-    z-index:1;
+  /* Story block sequence — homepage only */
+  .story-blocks{
     display:flex;
     flex-direction:column;
-    justify-content:center;
-    gap:60px;
+    gap:0;
+    margin:0 0 56px;
   }
-  .side-photos.left{ left:24px; }
-  .side-photos.right{ right:24px; }
-  .side-photos img{
-    width:120px;
-    height:120px;
-    object-fit:cover;
+  .story-block{
     border:1px solid var(--rule);
-    border-radius:4px;
-    box-shadow:0 8px 20px rgba(0,0,0,0.12);
-    background:var(--paper-raised);
+    overflow:hidden;
+    box-sizing:border-box;
   }
-  .side-photos.left img:nth-child(1){ animation: floatY 6s ease-in-out infinite; align-self:flex-start; }
-  .side-photos.left img:nth-child(2){ animation: floatY 7.5s ease-in-out infinite; animation-delay:.6s; align-self:center; }
-  .side-photos.left img:nth-child(3){ animation: floatY 5.5s ease-in-out infinite; animation-delay:1.2s; align-self:flex-start; }
-  .side-photos.right img:nth-child(1){ animation: floatY 7s ease-in-out infinite; animation-delay:.3s; align-self:flex-end; }
-  .side-photos.right img:nth-child(2){ animation: floatY 6.5s ease-in-out infinite; animation-delay:.9s; align-self:center; }
-  .side-photos.right img:nth-child(3){ animation: floatY 5.8s ease-in-out infinite; animation-delay:1.5s; align-self:flex-end; }
-
-  @keyframes floatY{
-    0%   { transform: translateY(0px) rotate(0deg); }
-    50%  { transform: translateY(-18px) rotate(-1.5deg); }
-    100% { transform: translateY(0px) rotate(0deg); }
+  .story-block img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
   }
+  .story-block.b1{ width:100%; height:200px; margin-left:0; }
+  .story-block.b2{ width:72%; height:200px; margin-left:28%; margin-top:-1px; }
+  .story-block.b3{ width:44%; height:200px; margin-left:56%; margin-top:-1px; }
 
-  @media (max-width:1200px){
-    .side-photos{ display:none; }
+  @media (max-width:760px){
+    .story-block.b1{ width:100%; margin-left:0; }
+    .story-block.b2{ width:100%; margin-left:0; }
+    .story-block.b3{ width:100%; margin-left:0; }
   }
 
   footer{border-top:1px solid var(--rule); padding:24px 0 40px; font-family:var(--mono); font-size:0.72rem; color:var(--ink-soft); display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;}
@@ -203,17 +190,6 @@
     </div>
   </div>
 </header>
-
-<div class="side-photos left">
-  <img src="images/a.png" alt="">
-  <img src="images/b.png" alt="">
-  <img src="images/c.png" alt="">
-</div>
-<div class="side-photos right">
-  <img src="images/d.png" alt="">
-  <img src="images/e.png" alt="">
-  <img src="images/f.png" alt="">
-</div>
 
 <main class="wrap" id="app"><div class="loading">Loading…</div></main>
 
@@ -302,8 +278,8 @@ async function renderHome(){
     app.innerHTML = `
       <section class="hero">
         <div>
-          <h1>Notes from an ongoing research project.</h1>
-          <p class="lede">Every project has a story.<br>This is a collection of the work behind mine.</p>
+          <h1>Every project has a story.</h1>
+          <p class="lede">This is a collection of the work behind mine.</p>
           <button class="cta" data-nav="archive">Read the archive →</button>
         </div>
         <div class="hero-side">
@@ -313,6 +289,11 @@ async function renderHome(){
           </ul>
         </div>
       </section>
+      <div class="story-blocks">
+        <div class="story-block b1"><img src="images/a.png" alt=""></div>
+        <div class="story-block b2"><img src="images/b.png" alt=""></div>
+        <div class="story-block b3"><img src="images/c.png" alt=""></div>
+      </div>
       <div class="list-header">
         <h2>Recent posts</h2>
         <span>${posts.length} total</span>
