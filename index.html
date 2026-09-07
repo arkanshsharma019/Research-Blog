@@ -82,10 +82,6 @@
     position:absolute;
     inset:0;
     z-index:2;
-    display:grid;
-    grid-template-columns: 1.3fr 1fr;
-    gap:64px;
-    align-items:start;
     max-width:1200px;
     margin:0 auto;
     padding:64px 28px 0;
@@ -93,21 +89,23 @@
   .video-hero-content h1{
     font-size:3.2rem; line-height:1.1; font-weight:500; margin:0;
     letter-spacing:-0.01em; color:var(--paper);
-  }
-  .video-hero-content p.lede{
-    font-size:1.08rem; color:rgba(245,241,232,0.85); line-height:1.6; margin:6px 0 0; max-width:44ch;
+    max-width:20ch;
   }
   @media (max-width: 800px){
-    .video-hero-content{grid-template-columns:1fr; gap:16px;}
     .video-hero{height:80vh;}
   }
 
   .post-video-cta{
     position:absolute;
-    left:0; right:0; bottom:56px;
+    inset:0;
     z-index:3;
     display:flex;
+    flex-direction:column;
+    align-items:center;
     justify-content:center;
+    gap:24px;
+    text-align:center;
+    padding:0 28px;
     opacity:0;
     transform:translateY(10px);
     pointer-events:none;
@@ -117,6 +115,9 @@
     opacity:1;
     transform:translateY(0);
     pointer-events:auto;
+  }
+  .post-video-cta p.lede{
+    font-size:1.15rem; color:var(--paper); line-height:1.6; margin:0; max-width:52ch;
   }
   .post-video-cta .cta{
     font-family:var(--sans); font-size:0.95rem; display:inline-flex; gap:8px; align-items:center;
@@ -310,10 +311,10 @@ async function renderHome(){
         <div class="video-hero">
           <video id="hero-video" src="video.mov" muted playsinline preload="auto"></video>
           <div class="video-hero-content">
-            <h1>Every project has a story.</h1>
-            <p class="lede">From the first question to the final paper — the ideas, experiments, analyses, and unfinished thoughts along the way.</p>
+            <h1>Every paper has a story.</h1>
           </div>
           <div class="post-video-cta" id="post-video-cta">
+            <p class="lede">From the first question to the final paper — the ideas, experiments, analyses, and unfinished thoughts along the way.</p>
             <button class="cta" data-nav="archive">Read the archive →</button>
           </div>
         </div>
