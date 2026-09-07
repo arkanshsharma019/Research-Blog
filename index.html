@@ -85,10 +85,10 @@
     display:grid;
     grid-template-columns: 1.3fr 1fr;
     gap:64px;
-    align-items:end;
+    align-items:start;
     max-width:1200px;
     margin:0 auto;
-    padding:0 28px 64px;
+    padding:64px 28px 0;
   }
   .video-hero-content h1{
     font-size:3.2rem; line-height:1.1; font-weight:500; margin:0;
@@ -98,9 +98,31 @@
     font-size:1.08rem; color:rgba(245,241,232,0.85); line-height:1.6; margin:6px 0 0; max-width:44ch;
   }
   @media (max-width: 800px){
-    .video-hero-content{grid-template-columns:1fr; gap:16px; align-items:end;}
+    .video-hero-content{grid-template-columns:1fr; gap:16px;}
     .video-hero{height:80vh;}
   }
+
+  .post-video-cta{
+    position:absolute;
+    left:0; right:0; bottom:56px;
+    z-index:3;
+    display:flex;
+    justify-content:center;
+    opacity:0;
+    transform:translateY(10px);
+    pointer-events:none;
+    transition:opacity .5s ease, transform .5s ease;
+  }
+  .post-video-cta.show{
+    opacity:1;
+    transform:translateY(0);
+    pointer-events:auto;
+  }
+  .post-video-cta .cta{
+    font-family:var(--sans); font-size:0.95rem; display:inline-flex; gap:8px; align-items:center;
+    text-decoration:none; color:var(--ink); background:var(--paper); padding:14px 24px; cursor:pointer; border:none;
+  }
+  .post-video-cta .cta:hover{background:var(--pulse); color:var(--paper);}
 
   .list-header{display:flex; justify-content:space-between; align-items:baseline; margin-bottom:22px; padding:0 28px;}
   .list-header h2{font-size:1.15rem; font-weight:500; margin:0;}
@@ -286,10 +308,13 @@ async function renderHome(){
       <div class="home-layout">
 
         <div class="video-hero">
-          <video id="hero-video" src="video.mov" muted playsinline loop autoplay preload="auto"></video>
+          <video id="hero-video" src="video.mov" muted playsinline preload="auto"></video>
           <div class="video-hero-content">
             <h1>Every project has a story.</h1>
             <p class="lede">From the first question to the final paper — the ideas, experiments, analyses, and unfinished thoughts along the way.</p>
+          </div>
+          <div class="post-video-cta" id="post-video-cta">
+            <button class="cta" data-nav="archive">Read the archive →</button>
           </div>
         </div>
 
@@ -312,9 +337,14 @@ async function renderHome(){
 
 function setupHeroVideo(){
   const video = document.getElementById('hero-video');
+  const cta = document.getElementById('post-video-cta');
   if(!video) return;
-  // Ensure autoplay kicks in even if the attribute is blocked by the browser initially
-  video.play().catch(()=>{ /* will still show first frame as a static background */ });
+
+  video.play().catch(()=>{ /* autoplay might be blocked; video will still show first frame */ });
+
+  video.addEventListener('ended', ()=>{
+    if(cta) cta.classList.add('show');
+  });
 }
 
 async function renderArchive(){
