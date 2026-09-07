@@ -117,7 +117,8 @@
     pointer-events:auto;
   }
   .post-video-cta p.lede{
-    font-size:1.15rem; color:var(--paper); line-height:1.6; margin:0; max-width:52ch;
+    font-size:1.15rem; font-weight:500; color:var(--paper); line-height:1.6; margin:0; max-width:52ch;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.6);
   }
   .post-video-cta .cta{
     font-family:var(--sans); font-size:0.95rem; display:inline-flex; gap:8px; align-items:center;
@@ -311,7 +312,7 @@ async function renderHome(){
         <div class="video-hero">
           <video id="hero-video" src="video.mov" muted playsinline preload="auto"></video>
           <div class="video-hero-content">
-            <h1>Every paper has a story.</h1>
+            <h1>Every paper has a <span style="text-decoration: underline; text-decoration-color: var(--pulse); text-underline-offset: 6px;">story</span>.</h1>
           </div>
           <div class="post-video-cta" id="post-video-cta">
             <p class="lede">From the first question to the final paper — the ideas, experiments, analyses, and unfinished thoughts along the way.</p>
