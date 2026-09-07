@@ -9,15 +9,15 @@
 <style>
   :root{
     /* Muted Scientific Palette (slightly brightened) */
-    --paper: #ECECEC;          /* Lightened grey background */
-    --paper-raised: #FFE4A3;   /* Slightly brighter pale yellow for code blocks/raised areas */
-    --ink: #1A1A1A;            /* Dark grey for readable primary text */
-    --ink-soft: #8B89C4;       /* Brighter muted purple for secondary text/meta */
-    --rule: #7FACC0;           /* Brighter grey-blue for dividers and borders */
-    --signal: #1E9CF2;         /* Brighter muted blue for primary accents/headers */
-    --pulse: #FFA94D;          /* Brighter muted orange for interactive hovers */
-    --amber: #D14A38;          /* Brighter muted red for active states and selections */
-    --teal: #2AA362;           /* Brighter muted green for tags and alternate accents */
+    --paper: #F5F1E8;          /* Warm cream background */
+    --paper-raised: #E4DFD3;   /* Warm tan for code blocks/raised areas */
+    --ink: #1B1F26;            /* Cool charcoal for readable primary text */
+    --ink-soft: #7E8590;       /* Steel grey for secondary text/meta */
+    --rule: #D5CFC0;           /* Warm tan line for dividers and borders */
+    --signal: #2C5C7A;         /* Blueprint blue for primary accents/headers */
+    --pulse: #4E86A4;          /* Lighter steel-blue for interactive hovers */
+    --amber: #9C4A2E;          /* Rust red for active states and selections */
+    --teal: #3E6E5E;           /* Teal green for tags and alternate accents */
 
     /* Typography */
     --display: 'Space Grotesk', 'IBM Plex Sans', sans-serif;
@@ -27,14 +27,13 @@
   }
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
-  
-  /* Added overflow-x: hidden to prevent horizontal scrollbars from the breakout trick */
+
   body{margin:0; background:var(--paper); color:var(--ink); font-family:var(--serif); -webkit-font-smoothing:antialiased; overflow-x: hidden;}
-  
+
   a{color:inherit;}
   ::selection{background:var(--amber); color:var(--paper);}
   a:focus-visible, button:focus-visible{outline:2px solid var(--teal); outline-offset:3px;}
-  .wrap{max-width:1200px; margin:0 auto; padding:0 28px;} 
+  .wrap{max-width:1200px; margin:0 auto; padding:0 28px;}
 
   header.masthead{border-bottom:1px solid var(--rule); border-top:3px solid var(--signal); padding:36px 0 0 0;}
   .masthead-row{display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:16px; padding-bottom:22px;}
@@ -49,47 +48,77 @@
 
   /* --- HOMEPAGE LAYOUT --- */
   .home-layout {
-    /* Break out of the .wrap constraints to hit the screen edges */
-    width: 100vw;
-    position: relative;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
-    
-    display: grid;
-    grid-template-columns: 240px minmax(auto, 720px) 240px;
-    justify-content: space-between;
-  }
-  
-  .home-center {
-    padding: 0 28px; /* Maintain safe padding for center text */
+    max-width: 1200px;
+    margin: 0 auto;
   }
 
-  @media (max-width: 1250px) {
-    /* Hide sidebars gracefully on smaller screens */
-    .home-layout { 
-      width: 100%;
-      left: auto;
-      right: auto;
-      margin-left: 0;
-      margin-right: 0;
-      grid-template-columns: 1fr; 
-    }
-    .sidebar { display: none; }
+  /* Anthropic-style hero: heading left, subheading right */
+  .hero{
+    display:grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap:64px;
+    align-items:start;
+    padding-bottom:48px;
+    margin-bottom:0;
+  }
+  .hero h1{font-size:3rem; line-height:1.1; font-weight:500; margin:0; letter-spacing:-0.01em; color:var(--ink);}
+  .hero p.lede{font-size:1.08rem; color:var(--ink-soft); line-height:1.6; margin:6px 0 0; max-width:44ch;}
+
+  @media (max-width: 800px){
+    .hero{grid-template-columns:1fr; gap:20px;}
   }
 
-  .hero{display:grid; grid-template-columns:1fr; gap:48px; padding-bottom:48px; border-bottom:1px solid var(--rule); margin-bottom:48px;}
-  .hero h1{font-size:2.6rem; line-height:1.12; font-weight:500; margin:0 0 18px; letter-spacing:-0.01em; color:var(--ink);}
-  .hero p.lede{font-size:1.08rem; color:var(--ink-soft); line-height:1.6; max-width:52ch; margin:0 0 20px;}
-  .hero .cta{font-family:var(--sans); font-size:0.92rem; display:inline-flex; gap:8px; align-items:center; text-decoration:none; color:var(--paper); background:var(--ink); padding:10px 16px; cursor:pointer; border:none;}
-  .hero .cta:hover{background:var(--teal);}
-  
-  .list-header{display:flex; justify-content:space-between; align-items:baseline; margin-bottom:22px;}
+  /* --- SCROLL VIDEO SECTION --- */
+  .video-section{
+    width:100vw;
+    position:relative;
+    left:50%;
+    right:50%;
+    margin-left:-50vw;
+    margin-right:-50vw;
+    margin-top:40px;
+    margin-bottom:48px;
+  }
+  .video-frame{
+    position:relative;
+    width:100%;
+    aspect-ratio:16/9;
+    background:var(--ink);
+    overflow:hidden;
+  }
+  .video-frame video{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+  .post-video-cta{
+    display:flex;
+    justify-content:center;
+    padding:36px 0 8px;
+    opacity:0;
+    transform:translateY(8px);
+    pointer-events:none;
+    transition:opacity .4s ease, transform .4s ease;
+  }
+  .post-video-cta.show{
+    opacity:1;
+    transform:translateY(0);
+    pointer-events:auto;
+  }
+  .post-video-cta .cta{
+    font-family:var(--sans); font-size:0.92rem; display:inline-flex; gap:8px; align-items:center;
+    text-decoration:none; color:var(--paper); background:var(--ink); padding:12px 20px; cursor:pointer; border:none;
+  }
+  .post-video-cta .cta:hover{background:var(--teal);}
+
+  .list-header{display:flex; justify-content:space-between; align-items:baseline; margin-bottom:22px; padding:0 28px;}
   .list-header h2{font-size:1.15rem; font-weight:500; margin:0;}
   .list-header span{font-family:var(--mono); font-size:0.75rem; color:var(--ink-soft);}
 
-  .entry{display:grid; grid-template-columns:88px 1fr; gap:24px; padding:22px 0; border-bottom:1px solid var(--rule); cursor:pointer;}
+  .home-center{padding:0 28px;}
+
+  .entry{display:grid; grid-template-columns:88px 1fr; gap:24px; padding:22px 28px; border-bottom:1px solid var(--rule); cursor:pointer;}
   .entry:first-of-type{border-top:1px solid var(--rule);}
   .entry:hover .entry-title{color:var(--amber);}
   .entry-num{font-family:var(--mono); font-size:0.78rem; color:var(--ink-soft); padding-top:3px;}
@@ -145,42 +174,6 @@
   .cv-logo{width:88px; height:88px; object-fit:contain;}
   .cv-item h3{font-size:1.05rem; font-weight:500; margin:0 0 5px; line-height:1.35;}
   .cv-note{color:var(--ink-soft); font-size:0.95rem; line-height:1.6; margin:0; max-width:60ch;}
-
-  /* --- SLIDESHOW STYLES (sidebars) --- */
-  .sidebar {
-    position: sticky;
-    top: 0;
-    height: 100vh;
-  }
-  .slideshow-container {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    border-left: 1px solid var(--rule);
-    border-right: 1px solid var(--rule);
-    background: var(--paper-raised);
-  }
-  .sidebar-left .slideshow-container { border-left: none; }
-  .sidebar-right .slideshow-container { border-right: none; }
-
-  .scroll-track {
-    display: flex;
-    flex-direction: column;
-    animation: scrollVertical 30s linear infinite; 
-  }
-  .scroll-track img {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
-    display: block;
-    border-bottom: 2px solid var(--paper);
-  }
-  .slideshow-container:hover .scroll-track { animation-play-state: paused; }
-  @keyframes scrollVertical {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(-50%); } 
-  }
 
   footer{border-top:1px solid var(--rule); padding:24px 0 40px; font-family:var(--mono); font-size:0.72rem; color:var(--ink-soft); display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;}
   .empty-note{font-family:var(--sans); color:var(--ink-soft); font-size:0.95rem; padding:30px 0; border-top:1px solid var(--rule); border-bottom:1px solid var(--rule);}
@@ -279,39 +272,28 @@ function errorNote(msg){
 async function renderHome(){
   try{
     const posts = await getManifest();
-    
+
     app.innerHTML = `
       <div class="home-layout">
-        
-        <aside class="sidebar sidebar-left">
-          <div class="slideshow-container">
-            <div class="scroll-track">
-              <img src="a.png" alt="Slide 1">
-              <img src="b.png" alt="Slide 2">
-              <img src="c.png" alt="Slide 3">
-              <img src="d.png" alt="Slide 4">
-              <img src="e.png" alt="Slide 5">
-              <img src="f.png" alt="Slide 6">
-              
-              <img src="a.png" alt="Slide 1">
-              <img src="b.png" alt="Slide 2">
-              <img src="c.png" alt="Slide 3">
-              <img src="d.png" alt="Slide 4">
-              <img src="e.png" alt="Slide 5">
-              <img src="f.png" alt="Slide 6">
-            </div>
-          </div>
-        </aside>
 
         <div class="home-center">
           <section class="hero">
-            <div>
-              <h1>Every project has a story.</h1>
-              <p class="lede">This is a collection of the work behind mine.</p>
-              <button class="cta" data-nav="archive">Read the archive →</button>
-            </div>
+            <h1>Every project has a story.</h1>
+            <p class="lede">From the first question to the final paper — the ideas, experiments, analyses, and unfinished thoughts along the way.</p>
           </section>
+        </div>
 
+        <div class="video-section">
+          <div class="video-frame">
+            <video id="hero-video" src="video.mov" muted playsinline preload="metadata"></video>
+          </div>
+        </div>
+
+        <div class="post-video-cta" id="post-video-cta">
+          <button class="cta" data-nav="archive">Read the archive →</button>
+        </div>
+
+        <div class="home-center">
           <div class="list-header">
             <h2>Recent posts</h2>
             <span>${posts.length} total</span>
@@ -319,32 +301,36 @@ async function renderHome(){
           ${posts.length ? posts.map(entryHtml).join('') : emptyState()}
         </div>
 
-        <aside class="sidebar sidebar-right">
-          <div class="slideshow-container">
-            <div class="scroll-track">
-              <img src="a.png" alt="Slide 1">
-              <img src="b.png" alt="Slide 2">
-              <img src="c.png" alt="Slide 3">
-              <img src="d.png" alt="Slide 4">
-              <img src="e.png" alt="Slide 5">
-              <img src="f.png" alt="Slide 6">
-              
-              <img src="a.png" alt="Slide 1">
-              <img src="b.png" alt="Slide 2">
-              <img src="c.png" alt="Slide 3">
-              <img src="d.png" alt="Slide 4">
-              <img src="e.png" alt="Slide 5">
-              <img src="f.png" alt="Slide 6">
-            </div>
-          </div>
-        </aside>
-
       </div>
     `;
+    setupHeroVideo();
   }catch(e){
     app.innerHTML = errorNote('Could not load posts.json. Make sure it exists at the root of your site.');
   }
   attachHandlers();
+}
+
+function setupHeroVideo(){
+  const video = document.getElementById('hero-video');
+  const cta = document.getElementById('post-video-cta');
+  if(!video) return;
+
+  let hasPlayed = false;
+
+  const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting && !hasPlayed){
+        hasPlayed = true;
+        video.play().catch(()=>{ /* autoplay might be blocked; user can still click */ });
+      }
+    });
+  }, { threshold: 0.5 });
+
+  observer.observe(video);
+
+  video.addEventListener('ended', ()=>{
+    cta.classList.add('show');
+  });
 }
 
 async function renderArchive(){
