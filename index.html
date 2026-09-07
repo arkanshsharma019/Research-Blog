@@ -260,7 +260,7 @@ function iconForLabel(label){
   return CONTACT_ICONS[key] || `<svg viewBox="0 0 24 24"><path d="M3.9 12a4.1 4.1 0 0 1 4.1-4.1h4v1.6H8a2.5 2.5 0 1 0 0 5h4V16H8a4.1 4.1 0 0 1-4.1-4zm7.1-.8h6v1.6h-6v-1.6zM16 7.9h4a4.1 4.1 0 1 1 0 8.2h-4v-1.6h4a2.5 2.5 0 1 0 0-5h-4V7.9z"/></svg>`;
 }
 
-
+function fmtDate(d){
   return new Date(d).toLocaleDateString('en-US', {year:'numeric', month:'short', day:'numeric'});
 }
 
