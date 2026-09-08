@@ -110,9 +110,12 @@
   .post-video-cta .cta{
     font-family:var(--sans); font-size:0.95rem; display:inline-flex;
     gap:8px; align-items:center; text-decoration:none; color:var(--ink);
-    background:var(--paper); padding:14px 24px; cursor:pointer; border:none;
+    background:var(--paper); padding:14px 28px; cursor:pointer; border:none;
+    border-radius:9999px; font-weight:600;
+    box-shadow:0 2px 16px rgba(0,0,0,0.2);
+    transition:background .15s ease, color .15s ease, box-shadow .15s ease;
   }
-  .post-video-cta .cta:hover{ background:var(--pulse); color:var(--paper); }
+  .post-video-cta .cta:hover{ background:var(--pulse); color:var(--paper); box-shadow:0 4px 20px rgba(0,0,0,0.28); }
 
   .list-header{display:flex; justify-content:space-between; align-items:baseline; margin-bottom:22px; padding:0 28px;}
   .list-header h2{font-size:1.15rem; font-weight:500; margin:0;}
@@ -267,7 +270,7 @@
      ============================================= */
   .post-overlay{
     position:fixed; inset:0; z-index:100;
-    background:rgba(21,24,16,0); /* ink at 0 */
+    background:rgba(21,24,16,0);
     backdrop-filter:blur(0px);
     display:flex; align-items:center; justify-content:center;
     padding:24px;
@@ -275,85 +278,133 @@
     transition:background .3s ease, backdrop-filter .3s ease;
   }
   .post-overlay.open{
-    background:rgba(21,24,16,0.55);
-    backdrop-filter:blur(6px);
+    background:rgba(21,24,16,0.6);
+    backdrop-filter:blur(8px);
     pointer-events:auto;
   }
 
   .post-card{
     position:relative;
     background:var(--paper);
+    border-radius:20px;
     border:1px solid var(--rule);
-    max-width:640px; width:100%;
-    max-height:82vh;
-    overflow-y:auto;
-    padding:40px 44px 36px;
-    /* start: scaled down + transparent */
+    max-width:660px; width:100%;
+    max-height:85vh;
+    overflow:hidden;
+    display:flex; flex-direction:column;
     opacity:0;
-    transform:scale(0.92) translateY(18px);
+    transform:scale(0.88) translateY(24px);
     transition:
-      opacity .35s cubic-bezier(0.34,1.48,0.64,1),
-      transform .38s cubic-bezier(0.34,1.48,0.64,1);
-    /* subtle shadow */
-    box-shadow:0 24px 64px rgba(0,0,0,0.18), 0 4px 16px rgba(0,0,0,0.1);
+      opacity .4s cubic-bezier(0.34,1.48,0.64,1),
+      transform .42s cubic-bezier(0.34,1.48,0.64,1);
+    box-shadow:
+      0 0 0 1px rgba(255,255,255,0.6) inset,
+      0 32px 80px rgba(0,0,0,0.22),
+      0 8px 24px rgba(0,0,0,0.12);
   }
   .post-overlay.open .post-card{
     opacity:1;
     transform:scale(1) translateY(0);
   }
-  @media(max-width:600px){
-    .post-card{ padding:28px 22px 24px; }
-  }
 
-  .post-card-close{
-    position:absolute; top:16px; right:18px;
-    background:none; border:none; cursor:pointer;
-    font-family:var(--mono); font-size:0.82rem;
-    color:var(--ink-soft); padding:4px 8px;
-    transition:color .15s ease;
+  /* Card header bar */
+  .post-card-header{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 24px 16px;
+    border-bottom:1px solid var(--rule);
+    background:var(--paper-raised);
+    border-radius:20px 20px 0 0;
+    flex-shrink:0;
   }
-  .post-card-close:hover{ color:var(--amber); }
+  .post-card-header-label{
+    font-family:var(--mono); font-size:0.72rem;
+    color:var(--ink-soft); letter-spacing:0.04em;
+    text-transform:uppercase;
+  }
+  .post-card-close{
+    background:none; border:none; cursor:pointer;
+    width:30px; height:30px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    color:var(--ink-soft);
+    transition:background .15s ease, color .15s ease;
+    padding:0;
+  }
+  .post-card-close:hover{
+    background:var(--rule); color:var(--ink);
+  }
+  .post-card-close svg{ width:14px; height:14px; fill:currentColor; }
+
+  /* Scrollable body */
+  .post-card-scroll{
+    overflow-y:auto; flex:1;
+    padding:32px 36px 0;
+    scroll-behavior:smooth;
+  }
+  @media(max-width:600px){
+    .post-card-scroll{ padding:24px 22px 0; }
+    .post-card-header{ padding:16px 18px 14px; }
+  }
 
   .post-card-meta{
     font-family:var(--mono); font-size:0.72rem;
-    color:var(--ink-soft); margin-bottom:12px;
+    color:var(--ink-soft); margin-bottom:10px;
+    display:flex; gap:14px; align-items:center;
+  }
+  .post-card-meta::before{
+    content:''; display:inline-block;
+    width:6px; height:6px; border-radius:50%;
+    background:var(--signal); flex-shrink:0;
   }
   .post-card-title{
-    font-size:1.6rem; font-weight:500; line-height:1.2;
-    margin:0 0 24px; letter-spacing:-0.01em;
+    font-size:1.65rem; font-weight:500; line-height:1.2;
+    margin:0 0 28px; letter-spacing:-0.02em;
   }
   .post-card-body{
-    font-size:1.02rem; line-height:1.75; color:var(--ink);
+    font-size:1.02rem; line-height:1.78; color:var(--ink);
   }
   .post-card-body h2{
-    font-size:1.15rem; font-weight:500; margin:28px 0 10px;
+    font-size:1.12rem; font-weight:600; margin:28px 0 10px;
+    color:var(--ink);
   }
   .post-card-body p{ margin:0 0 16px; }
   .post-card-body blockquote{
-    margin:20px 0; padding-left:16px;
-    border-left:2px solid var(--amber);
+    margin:20px 0; padding:14px 18px;
+    border-left:3px solid var(--amber);
+    background:var(--paper-raised);
+    border-radius:0 8px 8px 0;
     color:var(--ink-soft); font-style:italic;
   }
-  .post-card-body figure{ margin:20px 0; }
-  .post-card-body figure img{ width:100%; border:1px solid var(--rule); }
+  .post-card-body figure{ margin:22px 0; }
+  .post-card-body figure img{
+    width:100%; border-radius:10px;
+    border:1px solid var(--rule);
+  }
   .post-card-body figcaption{
     font-family:var(--sans); font-size:0.82rem;
-    color:var(--ink-soft); margin-top:6px;
+    color:var(--ink-soft); margin-top:8px; line-height:1.5;
   }
 
+  /* Sticky footer inside card */
   .post-card-foot{
-    margin-top:32px; padding-top:18px;
-    border-top:1px solid var(--rule);
+    position:sticky; bottom:0;
+    margin-top:28px;
+    padding:18px 36px;
+    background:linear-gradient(to bottom, transparent 0%, var(--paper) 30%);
     display:flex; align-items:center; justify-content:space-between;
     flex-wrap:wrap; gap:12px;
+    flex-shrink:0;
   }
+  @media(max-width:600px){ .post-card-foot{ padding:16px 22px; } }
+
   .post-card-archive-link{
-    font-family:var(--sans); font-size:0.88rem;
-    color:var(--teal); text-decoration:none; cursor:pointer;
-    border:none; background:none; padding:0;
-    transition:color .15s ease;
+    font-family:var(--sans); font-size:0.88rem; font-weight:600;
+    color:var(--paper); background:var(--ink);
+    border:none; border-radius:9999px;
+    padding:10px 20px; cursor:pointer;
+    text-decoration:none; display:inline-flex; align-items:center; gap:6px;
+    transition:background .15s ease;
   }
-  .post-card-archive-link:hover{ color:var(--amber); }
+  .post-card-archive-link:hover{ background:var(--signal); }
   .post-card-num{
     font-family:var(--mono); font-size:0.72rem; color:var(--ink-soft);
   }
@@ -387,8 +438,17 @@
 <!-- Post popup card — injected once, reused for every post -->
 <div class="post-overlay" id="post-overlay" role="dialog" aria-modal="true" aria-label="Post preview">
   <div class="post-card" id="post-card">
-    <button class="post-card-close" id="post-card-close">✕ close</button>
-    <div id="post-card-inner"></div>
+    <div class="post-card-header">
+      <span class="post-card-header-label">Research Notes</span>
+      <button class="post-card-close" id="post-card-close" aria-label="Close">
+        <svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+      </button>
+    </div>
+    <div class="post-card-scroll" id="post-card-inner"></div>
+    <div class="post-card-foot" id="post-card-foot" style="display:none">
+      <button class="post-card-archive-link" id="post-card-archive-link">Open in archive →</button>
+      <span class="post-card-num" id="post-card-num"></span>
+    </div>
   </div>
 </div>
 
@@ -495,7 +555,7 @@ async function renderHome(){
   }catch(e){
     app.innerHTML = errorNote('Could not load posts.json. Make sure it exists at the root of your site.');
   }
-  attachHandlers();
+  attachHandlers('home');
 }
 
 function setupHeroVideo(){
@@ -686,9 +746,12 @@ async function renderAbout(){
 }
 
 /* ─── POST POPUP CARD ───────────────────────────────────────────── */
-const overlay   = document.getElementById('post-overlay');
-const cardInner = document.getElementById('post-card-inner');
-const cardClose = document.getElementById('post-card-close');
+const overlay    = document.getElementById('post-overlay');
+const cardInner  = document.getElementById('post-card-inner');
+const cardClose  = document.getElementById('post-card-close');
+const cardFoot   = document.getElementById('post-card-foot');
+const cardArchive= document.getElementById('post-card-archive-link');
+const cardNum    = document.getElementById('post-card-num');
 
 function closePostCard(){
   overlay.classList.remove('open');
@@ -696,10 +759,12 @@ function closePostCard(){
 }
 
 async function openPostCard(id){
-  // Show overlay immediately with loading state
-  cardInner.innerHTML = `<div class="loading" style="padding:20px 0;">Loading…</div>`;
+  cardInner.innerHTML = `<div class="loading" style="padding:20px 0 32px;">Loading…</div>`;
+  cardFoot.style.display = 'none';
   overlay.classList.add('open');
   document.body.style.overflow = 'hidden';
+  // Scroll card back to top
+  cardInner.scrollTop = 0;
 
   try{
     const posts = await getManifest();
@@ -717,14 +782,12 @@ async function openPostCard(id){
       <div class="post-card-meta">${fmtDate(p.date)}</div>
       <h2 class="post-card-title">${p.title}</h2>
       <div class="post-card-body">${bodyHtml}</div>
-      <div class="post-card-foot">
-        <button class="post-card-archive-link" data-post-nav="${id}">Open in archive →</button>
-        <span class="post-card-num">${String(idx + 1).padStart(2,'0')} / ${String(posts.length).padStart(2,'0')}</span>
-      </div>
     `;
 
-    // Wire the "open in archive" link inside the card
-    cardInner.querySelector('[data-post-nav]').onclick = () => {
+    cardNum.textContent = `${String(idx + 1).padStart(2,'0')} / ${String(posts.length).padStart(2,'0')}`;
+    cardFoot.style.display = 'flex';
+
+    cardArchive.onclick = () => {
       closePostCard();
       location.hash = '#/post/' + id;
     };
@@ -741,13 +804,16 @@ document.addEventListener('keydown', e => { if(e.key === 'Escape') closePostCard
 // Close button
 cardClose.addEventListener('click', closePostCard);
 
-function attachHandlers(){
+function attachHandlers(context){
   document.querySelectorAll('[data-nav]').forEach(el=>{
     el.onclick = ()=> navigate(el.dataset.nav);
   });
-  // Entries now open the popup card instead of navigating
   document.querySelectorAll('[data-post]').forEach(el=>{
-    el.onclick = ()=> openPostCard(el.dataset.post);
+    if(context === 'home'){
+      el.onclick = ()=> openPostCard(el.dataset.post);
+    } else {
+      el.onclick = ()=> { location.hash = '#/post/' + el.dataset.post; };
+    }
   });
 }
 
