@@ -194,7 +194,6 @@
     background: linear-gradient(to bottom, #fefefe, rgba(243,243,242,0.8));
     box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 0 0 0.5px rgba(0,0,0,0.04);
     pointer-events: none;
-    /* Spring-like easing: high stiffness, slight overshoot */
     transition:
       left 0.38s cubic-bezier(0.34, 1.48, 0.64, 1),
       width 0.38s cubic-bezier(0.34, 1.48, 0.64, 1);
@@ -217,7 +216,6 @@
     gap: 8px;
     white-space: nowrap;
     transition: color 0.2s ease;
-    /* No margin-bottom or border-bottom — pill handles active state */
   }
 
   .cv-tab:hover { color: var(--ink); }
@@ -227,7 +225,6 @@
     font-weight: 700;
   }
 
-  /* Blur flash on the tab label when it becomes active */
   .cv-tab .tab-label {
     display: inline-block;
     transition: filter 0s;
@@ -241,7 +238,6 @@
     100% { filter: blur(0px); }
   }
 
-  /* Tab icons — scale up slightly when active */
   .cv-tab .tab-icon {
     display: flex;
     align-items: center;
@@ -307,7 +303,6 @@
     transform:scale(1) translateY(0);
   }
 
-  /* Card header bar */
   .post-card-header{
     display:flex; align-items:center; justify-content:space-between;
     padding:18px 24px 16px;
@@ -334,7 +329,6 @@
   }
   .post-card-close svg{ width:14px; height:14px; fill:currentColor; }
 
-  /* Scrollable body */
   .post-card-scroll{
     overflow-y:auto; flex:1;
     padding:32px 36px 0;
@@ -384,7 +378,6 @@
     color:var(--ink-soft); margin-top:8px; line-height:1.5;
   }
 
-  /* Sticky footer inside card */
   .post-card-foot{
     position:sticky; bottom:0;
     margin-top:28px;
@@ -459,19 +452,32 @@ document.getElementById('year').textContent = new Date().getFullYear();
 let manifestCache = null;
 const postCache = {};
 
+/* ─── MANIFEST + POST LOADING ───────────────────────────────────────
+   Posts are stored as flat files at the site root: post1.json,
+   post2.json, post3.json, ... — numbered by their position/order in
+   posts.json (NOT by the "id" field). The "id" field in posts.json
+   is only used for building URLs like #/post/<id>; it never needs to
+   match a filename.
+   ──────────────────────────────────────────────────────────────── */
 async function getManifest(){
   if(manifestCache) return manifestCache;
   const res = await fetch('posts.json');
   if(!res.ok) throw new Error('Could not load posts.json');
   const data = await res.json();
-  manifestCache = [...data].sort((a,b)=> new Date(b.date) - new Date(a.date));
+  // Assign file name by position in posts.json, BEFORE sorting by date,
+  // so file numbers always match the order the posts are written in posts.json.
+  const withFiles = data.map((p, i) => ({ ...p, _file: `post${i + 1}.json` }));
+  manifestCache = withFiles.sort((a,b)=> new Date(b.date) - new Date(a.date));
   return manifestCache;
 }
 
 async function getPost(id){
   if(postCache[id]) return postCache[id];
-  const res = await fetch('posts/' + id + '.json');
-  if(!res.ok) throw new Error('Could not load post: ' + id);
+  const posts = await getManifest();
+  const meta = posts.find(p => p.id === id);
+  if(!meta) throw new Error('Post not found in manifest: ' + id);
+  const res = await fetch(meta._file);
+  if(!res.ok) throw new Error('Could not load post file: ' + meta._file);
   const data = await res.json();
   postCache[id] = data;
   return data;
@@ -521,7 +527,7 @@ function entryHtml(p, i){
 }
 
 function emptyState(){
-  return `<div class="empty-note">No posts yet — add a file to /posts and list it in posts.json to publish here.</div>`;
+  return `<div class="empty-note">No posts yet — add post1.json (post2.json, ...) at the site root and list it in posts.json to publish here.</div>`;
 }
 function errorNote(msg){
   return `<div class="error-note">${msg}</div>`;
@@ -609,7 +615,7 @@ async function renderPost(id){
       </div>
     `;
   }catch(e){
-    app.innerHTML = errorNote('Could not load this post. Check that posts/' + id + '.json exists.');
+    app.innerHTML = errorNote('Could not load this post: ' + e.message);
   }
   attachHandlers();
 }
@@ -638,13 +644,11 @@ function setupFluidTabs(){
   const tabsEl = document.querySelector('.cv-tabs');
   if(!tabsEl) return;
 
-  // Inject the sliding pill element
   const pill = document.createElement('div');
   pill.className = 'cv-tab-pill';
   tabsEl.insertBefore(pill, tabsEl.firstChild);
 
   function movePillTo(btn){
-    // Position pill relative to the .cv-tabs container
     const containerRect = tabsEl.getBoundingClientRect();
     const btnRect = btn.getBoundingClientRect();
     pill.style.left = (btnRect.left - containerRect.left) + 'px';
@@ -653,12 +657,10 @@ function setupFluidTabs(){
 
   const tabs = tabsEl.querySelectorAll('.cv-tab');
 
-  // Snap pill to initial active tab with no transition
   const initialActive = tabsEl.querySelector('.cv-tab.active');
   if(initialActive){
     pill.style.transition = 'none';
     movePillTo(initialActive);
-    // Re-enable transition after first paint
     requestAnimationFrame(()=> requestAnimationFrame(()=>{
       pill.style.transition = '';
     }));
@@ -666,25 +668,20 @@ function setupFluidTabs(){
 
   tabs.forEach(btn => {
     btn.onclick = () => {
-      // Update active class
       tabs.forEach(b => b.classList.remove('active', 'activating'));
       btn.classList.add('active');
 
-      // Blur-flash animation
       btn.classList.add('activating');
       btn.addEventListener('animationend', () => btn.classList.remove('activating'), { once: true });
 
-      // Slide pill
       movePillTo(btn);
 
-      // Switch panels
       document.querySelectorAll('.cv-panel').forEach(p => p.classList.remove('active'));
       const target = document.getElementById('panel-' + btn.dataset.tab);
       if(target) target.classList.add('active');
     };
   });
 
-  // Keep pill in sync if window is resized
   window.addEventListener('resize', () => {
     const active = tabsEl.querySelector('.cv-tab.active');
     if(active){
@@ -736,7 +733,6 @@ async function renderAbout(){
       </div>
     `;
 
-    // Initialise fluid tabs after DOM is ready
     setupFluidTabs();
 
   }catch(e){
@@ -763,7 +759,6 @@ async function openPostCard(id){
   cardFoot.style.display = 'none';
   overlay.classList.add('open');
   document.body.style.overflow = 'hidden';
-  // Scroll card back to top
   cardInner.scrollTop = 0;
 
   try{
@@ -793,15 +788,12 @@ async function openPostCard(id){
     };
 
   }catch(e){
-    cardInner.innerHTML = `<div class="error-note">Could not load post.</div>`;
+    cardInner.innerHTML = `<div class="error-note">Could not load post: ${e.message}</div>`;
   }
 }
 
-// Close on backdrop click
 overlay.addEventListener('click', e => { if(e.target === overlay) closePostCard(); });
-// Close on Escape
 document.addEventListener('keydown', e => { if(e.key === 'Escape') closePostCard(); });
-// Close button
 cardClose.addEventListener('click', closePostCard);
 
 function attachHandlers(context){
@@ -829,11 +821,9 @@ function highlightNav(route){
 
   activeLink.classList.add('active');
 
-  // Blur flash
   activeLink.classList.add('activating');
   activeLink.addEventListener('animationend', () => activeLink.classList.remove('activating'), { once: true });
 
-  // Move pill
   const navRect = nav.getBoundingClientRect();
   const linkRect = activeLink.getBoundingClientRect();
   const isFirstRender = pill.style.width === '';
@@ -848,7 +838,6 @@ function highlightNav(route){
   }
 }
 
-// Keep nav pill in sync on resize
 window.addEventListener('resize', ()=>{
   const nav = document.getElementById('primary-nav');
   const pill = document.getElementById('nav-pill');
