@@ -1,0 +1,21 @@
+{
+  "title": "From a Metro Ride to a Manuscript: The Story Behind Our ARIA Meta-Analysis",
+  "date": "2026-09-05",
+  "body": [
+    { "type": "p", "text": "The idea for this paper started in November 2024, on a metro ride to visit friends. I was scrolling through JAMA Neurology's latest articles and came across a piece on ARIA. At the time, as a second-year MBBS student, I didn't really know much about ARIA (amyloid-related imaging abnormalities) yet, but I kept seeing it pop up again and again across different journal notifications I used to get. Excited, I jotted the idea down." },
+
+    { "type": "p", "text": "Then in January, after our year-end exams got over, a few of us were looking for a project one night, and I looked up whether there was any existing meta-analysis on ARIA. Sure enough, there was one, published by Jeong et al. in 2022. Jeong et al. had just covered all the phase 2 trials up until 2022, and we wanted to update the work with the massive amount of phase 3 RCTs that had since come out, so we started with this intention back in January 2025." },
+
+    { "type": "p", "text": "Things slowed down obviously. Data extraction was pretty tricky because of the sheer number of post-hoc and secondary publications for the same trials, and we ended up including many post-hoc studies for the same NCT number by mistake. We eventually devised a way to track the NCT number of each study during data extraction, and revisited things again — but there was still a lot of confusion, especially around ARIA-H, which had so many overlapping classification systems." },
+
+    { "type": "p", "text": "This confusion and data extraction phase was still ongoing when we heard that the same team, Jeong et al., had released their latest update — one that only included phase 3 trials. It was a bit of a gut-punch when I saw that they'd already submitted it to the journal back in 2024, long before I'd even come up with the idea. But there were a few gaps we noticed: mainly, how could we make our paper more novel and cover what they had missed. Their paper only covered ARIA prevalence, so we decided to add a network meta-analysis to compare the safety events between the drugs. Along with this, we wanted to add an APOE4-based comparison of the drugs against each other." },
+
+    { "type": "p", "text": "During the statistical analysis, after a long and painstaking process of finally figuring out the right studies and getting the correct data, we realized that a simple network meta-analysis wasn't sufficient, because in ARIA we had so many outcomes with zero events — genuinely rare adverse events. So in that case, we used a technique called penalized likelihood network meta-analysis, which becomes useful when there are rare events with zero counts, an approach I'd seen used in a related paper." },
+
+    { "type": "p", "text": "For the APOE4 comparison, we tried a regression-based approach first, but that didn't work out. So we switched to a simple pairwise meta-analysis comparing ARIA-E and ARIA-H between carriers and non-carriers, and between homozygous and heterozygous carriers — an approach we borrowed from other meta-analyses. We also decided that for the paper to really stand out, it should be the single most complete paper covering every specific type of ARIA-related adverse event fully, so we decided to add both the standalone prevalence estimates and the pairwise meta-analysis, along with the network meta-analysis. Alongside all this, I personally wrote a full narrative systematic review section for the paper, where we described the story of each drug — the trials it went through and its outcomes — in brief." },
+
+    { "type": "p", "text": "This still wasn't looking complete. We got some positive comments from peer review when we submitted, and one of them was: why don't we also add volumetric changes, something that was also being reported but not covered comprehensively. So we added hippocampal atrophy, whole brain atrophy, and lateral ventricular enlargement, making this review a state-of-the-art review specifically focused on the safety of monoclonal antibodies, covering all the side effects with a special focus on ARIA-E and ARIA-H." },
+
+    { "type": "p", "text": "The full paper is available here: https://doi.org/10.1177/13872877261466097" }
+  ]
+}
