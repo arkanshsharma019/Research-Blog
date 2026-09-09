@@ -10,7 +10,7 @@
   :root{
     --paper: #F5F1E8;
     --paper-raised: #EDE7CE;
-    --ink: #151810;
+    --ink: #0D0F08;
     --ink-soft: #6D705F;
     --rule: #D9D0AE;
     --signal: #2E6B1F;
@@ -149,7 +149,9 @@
     color:var(--signal);
   }
   .post-body h2{font-size:1.35rem; font-weight:500; margin:38px 0 14px;}
-  .post-body p{margin:0 0 18px;}
+  .post-body p{ margin:0 0 18px; }
+  .post-body a{ color:var(--teal); text-decoration:underline; text-underline-offset:2px; }
+  .post-body a:hover{ color:var(--amber); }
   .post-body blockquote{margin:26px 0; padding-left:20px; border-left:2px solid var(--amber); color:var(--ink-soft); font-style:italic;}
   .post-body code{font-family:var(--mono); background:var(--paper-raised); padding:2px 5px; font-size:0.9em; color:var(--ink);}
   .post-figure{margin:30px 0;}
@@ -370,7 +372,17 @@
     color:var(--ink);
   }
   .post-card-body p{ margin:0 0 16px; }
+  .post-card-body a{ color:var(--teal); text-decoration:underline; text-underline-offset:2px; }
+  .post-card-body a:hover{ color:var(--amber); }
   .post-card-body p:first-of-type::first-letter{
+    font-family:'Space Grotesk', Georgia, serif;
+    font-weight:700;
+    font-size:4.4rem;
+    line-height:0.75;
+    float:left;
+    padding:4px 8px 0 0;
+    color:var(--signal);
+  }
     font-family:'Space Grotesk', Georgia, serif;
     font-weight:700;
     font-size:4.4rem;
@@ -562,7 +574,7 @@ async function renderHome(){
             <h1>Every paper has a <span style="text-decoration:underline; text-decoration-color:var(--pulse); text-underline-offset:6px;">story</span>.</h1>
           </div>
           <div class="post-video-cta" id="post-video-cta">
-            <p class="lede">From the first question to the final paper — the ideas, experiments, analyses, and unfinished thoughts along the way.</p>
+            <p class="lede">From the first question to the final paper: the ideas, experiments, analyses, and unfinished thoughts along the way.</p>
             <button class="cta" data-nav="archive">Read the archive →</button>
           </div>
         </div>
