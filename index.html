@@ -135,9 +135,11 @@
   /* --- HOMEPAGE LAYOUT --- */
   .home-layout { max-width:1200px; margin:0 auto; }
 
-  /* --- HERO HEADING (sits above the video, not overlaid on it) --- */
+  /* --- HERO HEADING ---
+     CHANGE 1: padding-bottom reduced from 40px → 12px
+     so "story" sits closer to the hero square below it. */
   .hero-heading{
-    max-width:1200px; margin:0 auto; padding:24px 28px 40px;
+    max-width:1200px; margin:0 auto; padding:24px 28px 12px;
   }
   .hero-heading h1{
     font-size:3.6rem; line-height:1.15; font-weight:500; margin:0;
@@ -145,13 +147,7 @@
   }
   @media (max-width:800px){ .hero-heading h1{ font-size:2.4rem; } }
 
-  /* --- VIDEO HERO ───────────────────────────────────────────────
-     .video-hero is the full-bleed outer stage (always 100vw / 88vh,
-     defines the layout space). .video-hero-inner is the box that
-     starts small/rounded/inset — a true SQUARE at rest — and is
-     grown toward full-bleed via JS-driven inline styles as the user
-     scrolls, so it reads as a framed square clip that opens up into
-     a full-screen hero (matches the anthropic.com pattern). ------- */
+  /* --- VIDEO HERO ─────────────────────────────────────────────── */
   .video-hero{
     width:100vw; position:relative; left:50%; right:50%;
     margin-left:-50vw; margin-right:-50vw;
@@ -163,7 +159,6 @@
     background:var(--ink);
     border-radius:28px;
     will-change:top,left,right,bottom,border-radius;
-    /* JS sets top/left/right/bottom/border-radius each frame based on scroll */
   }
   .video-hero video{
     position:absolute; top:50%; left:50%;
@@ -281,7 +276,7 @@
   .contact-icons svg{ width:19px; height:19px; fill:currentColor; }
 
   /* =============================================
-     FLUID TABS  (ported from Watermelon / React)
+     FLUID TABS
      ============================================= */
   .cv-tabs {
     position: relative;
@@ -375,6 +370,7 @@
 
   /* =============================================
      POST POPUP CARD
+     CHANGE 3 & 4: wider (860px) and taller (90vh)
      ============================================= */
   .post-overlay{
     position:fixed; inset:0; z-index:100;
@@ -396,8 +392,8 @@
     background:var(--paper);
     border-radius:20px;
     border:1px solid var(--rule);
-    max-width:660px; width:100%;
-    max-height:85vh;
+    max-width:860px; width:100%;   /* ← was 660px */
+    max-height:90vh;               /* ← was 85vh  */
     overflow:hidden;
     display:flex; flex-direction:column;
     opacity:0;
@@ -577,13 +573,6 @@ document.getElementById('year').textContent = new Date().getFullYear();
 let manifestCache = null;
 const postCache = {};
 
-/* ─── MANIFEST + POST LOADING ───────────────────────────────────────
-   Posts are stored as flat files at the site root: post1.json,
-   post2.json, post3.json, ... — numbered by their position/order in
-   posts.json (NOT by the "id" field). The "id" field in posts.json
-   is only used for building URLs like #/post/<id>; it never needs to
-   match a filename.
-   ──────────────────────────────────────────────────────────────── */
 async function getManifest(){
   if(manifestCache) return manifestCache;
   const res = await fetch('posts.json');
@@ -700,27 +689,20 @@ function setupHeroVideo(){
   setupHeroScrollGrow();
 }
 
-/* ─── HERO SCROLL-GROW: small square box -> full-bleed on scroll ───
-   At scrollY 0 the inner box sits inset within the outer stage as a
-   true SQUARE with rounded corners — like a framed clip, matching
-   the anthropic.com hero pattern. As the user scrolls down (over the
-   first ~480px), it smoothly grows to fill the full outer stage
-   edge-to-edge, corners flattening to 0. Past that range it just
-   stays full-bleed like a normal hero.
-
-   The square is computed from the box's own resting HEIGHT (outer
-   height minus a fixed vertical inset), then the horizontal inset is
-   derived so width == height — rather than using the same inset on
-   all four sides, which produces a squat rectangle whenever the
-   stage is much wider than it is tall (as it was before). --------- */
+/* ─── HERO SCROLL-GROW ─────────────────────────────────────────────
+   CHANGE 2: REST_INSET_Y reduced from 160 → 60.
+   This makes the resting square much bigger — the square side is
+   (outerHeight - 60*2) instead of (outerHeight - 160*2), so on an
+   88vh stage (~800px) the box is now ~680px square instead of ~480px.
+   It still grows fully to edge-to-edge as the user scrolls.         */
 function setupHeroScrollGrow(){
   const outer = document.getElementById('video-hero');
   const inner = document.getElementById('video-hero-inner');
   const content = document.getElementById('video-hero-content');
   if(!outer || !inner) return;
 
-  const GROW_RANGE = 480;       // px of scroll over which the box fully opens
-  const REST_INSET_Y = 160;     // vertical inset at rest (top & bottom) — tune this for a bigger/smaller resting square
+  const GROW_RANGE = 480;
+  const REST_INSET_Y = 60;    /* ← was 160 — smaller inset = bigger resting square */
   const REST_RADIUS = 28;
   let ticking = false;
 
@@ -732,7 +714,7 @@ function setupHeroScrollGrow(){
     const t = easeOutCubic(raw);
 
     const outerRect = outer.getBoundingClientRect();
-    const restHeight = outerRect.height - REST_INSET_Y * 2;        // square side length at rest
+    const restHeight = outerRect.height - REST_INSET_Y * 2;
     const restInsetX = Math.max((outerRect.width - restHeight) / 2, 0);
 
     const insetX = lerp(restInsetX, 0, t);
@@ -750,14 +732,12 @@ function setupHeroScrollGrow(){
     ticking = false;
   }
 
-  // Set initial frame before first paint
   update();
 
   window.addEventListener('scroll', () => {
     if(!ticking){ requestAnimationFrame(update); ticking = true; }
   }, { passive:true });
 
-  // Recompute the resting square if the viewport changes size
   window.addEventListener('resize', () => {
     if(!ticking){ requestAnimationFrame(update); ticking = true; }
   }, { passive:true });
@@ -827,10 +807,6 @@ function cvItem(period, title, place, note, image){
   `;
 }
 
-/* ─── FLUID TABS SETUP ─────────────────────────────────────────────
-   Called after renderAbout() injects the .cv-tabs markup.
-   Creates a pill div and repositions it on every tab click.
-   ──────────────────────────────────────────────────────────────── */
 function setupFluidTabs(){
   const tabsEl = document.querySelector('.cv-tabs');
   if(!tabsEl) return;
@@ -1046,7 +1022,7 @@ function navigate(route){
   location.hash = route === 'home' ? '#/' : '#/' + route;
 }
 
-/* ─── HEADER SCROLL BEHAVIOR: elevation shadow + wordmark collapse ─── */
+/* ─── HEADER SCROLL BEHAVIOR ─────────────────────────────────────── */
 (function setupHeaderScrollFx(){
   const masthead = document.getElementById('masthead');
   const siteTitle = document.getElementById('site-title');
@@ -1056,17 +1032,12 @@ function navigate(route){
   function update(){
     const currentY = window.scrollY;
 
-    // Shadow / elevation once scrolled past the very top
     if(currentY > 8){
       masthead.classList.add('is-elevated');
     } else {
       masthead.classList.remove('is-elevated');
     }
 
-    // Wordmark collapse: shrink to "RN." once scrolled down a bit and
-    // still moving down. Only expand back to the full name once the
-    // user has scrolled back up near the very top of the page — not
-    // on every small upward wiggle mid-page.
     const delta = currentY - lastScrollY;
     if(currentY > 80 && delta > 2){
       siteTitle.classList.add('collapsed');
