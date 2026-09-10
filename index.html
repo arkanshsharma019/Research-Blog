@@ -135,9 +135,6 @@
   /* --- HOMEPAGE LAYOUT --- */
   .home-layout { max-width:1200px; margin:0 auto; }
 
-  /* --- HERO HEADING ---
-     CHANGE 1: padding-bottom reduced from 40px → 12px
-     so "story" sits closer to the hero square below it. */
   .hero-heading{
     max-width:1200px; margin:0 auto; padding:24px 28px 12px;
   }
@@ -370,7 +367,6 @@
 
   /* =============================================
      POST POPUP CARD
-     CHANGE 3 & 4: wider (860px) and taller (90vh)
      ============================================= */
   .post-overlay{
     position:fixed; inset:0; z-index:100;
@@ -392,8 +388,8 @@
     background:var(--paper);
     border-radius:20px;
     border:1px solid var(--rule);
-    max-width:860px; width:100%;   /* ← was 660px */
-    max-height:90vh;               /* ← was 85vh  */
+    max-width:860px; width:100%;
+    max-height:90vh;
     overflow:hidden;
     display:flex; flex-direction:column;
     opacity:0;
@@ -655,7 +651,7 @@ async function renderHome(){
         </div>
         <div class="video-hero" id="video-hero">
           <div class="video-hero-inner" id="video-hero-inner">
-            <video id="hero-video" src="video.mov" muted playsinline preload="auto"></video>
+            <video id="hero-video" src="video.mov" muted autoplay playsinline preload="auto"></video>
           </div>
           <div class="post-video-cta" id="post-video-cta">
             <p class="lede">From the first question to the final paper: the ideas, experiments, analyses, and unfinished thoughts along the way.</p>
@@ -682,19 +678,14 @@ function setupHeroVideo(){
   const video = document.getElementById('hero-video');
   const cta = document.getElementById('post-video-cta');
   if(!video) return;
-  video.playbackRate = 0.6;
+  video.playbackRate = 0.9;
   video.play().catch(()=>{});
-  video.addEventListener('loadedmetadata', ()=>{ video.playbackRate = 0.6; });
+  video.addEventListener('loadedmetadata', ()=>{ video.playbackRate = 0.9; });
   video.addEventListener('ended', ()=>{ if(cta) cta.classList.add('show'); });
   setupHeroScrollGrow();
 }
 
-/* ─── HERO SCROLL-GROW ─────────────────────────────────────────────
-   CHANGE 2: REST_INSET_Y reduced from 160 → 60.
-   This makes the resting square much bigger — the square side is
-   (outerHeight - 60*2) instead of (outerHeight - 160*2), so on an
-   88vh stage (~800px) the box is now ~680px square instead of ~480px.
-   It still grows fully to edge-to-edge as the user scrolls.         */
+/* ─── HERO SCROLL-GROW ─────────────────────────────────────────────  */
 function setupHeroScrollGrow(){
   const outer = document.getElementById('video-hero');
   const inner = document.getElementById('video-hero-inner');
@@ -702,7 +693,7 @@ function setupHeroScrollGrow(){
   if(!outer || !inner) return;
 
   const GROW_RANGE = 480;
-  const REST_INSET_Y = 60;    /* ← was 160 — smaller inset = bigger resting square */
+  const REST_INSET_Y = 20;
   const REST_RADIUS = 28;
   let ticking = false;
 
