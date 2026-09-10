@@ -148,9 +148,10 @@
   /* --- VIDEO HERO ───────────────────────────────────────────────
      .video-hero is the full-bleed outer stage (always 100vw / 88vh,
      defines the layout space). .video-hero-inner is the box that
-     starts small/rounded/inset and is grown toward full-bleed via
-     JS-driven inline styles as the user scrolls, so it reads as a
-     framed video clip that opens up into a full-screen hero. --- */
+     starts small/rounded/inset — a true SQUARE at rest — and is
+     grown toward full-bleed via JS-driven inline styles as the user
+     scrolls, so it reads as a framed square clip that opens up into
+     a full-screen hero (matches the anthropic.com pattern). ------- */
   .video-hero{
     width:100vw; position:relative; left:50%; right:50%;
     margin-left:-50vw; margin-right:-50vw;
@@ -699,19 +700,28 @@ function setupHeroVideo(){
   setupHeroScrollGrow();
 }
 
-/* ─── HERO SCROLL-GROW: small framed box -> full-bleed on scroll ───
-   At scrollY 0 the inner box sits inset within the outer stage with
-   rounded corners, like a framed video clip. As the user scrolls
-   down (over the first ~480px), it smoothly grows to fill the full
-   outer stage edge-to-edge, corners flattening to 0. Past that
-   range it just stays full-bleed like a normal hero. ──────────── */
+/* ─── HERO SCROLL-GROW: small square box -> full-bleed on scroll ───
+   At scrollY 0 the inner box sits inset within the outer stage as a
+   true SQUARE with rounded corners — like a framed clip, matching
+   the anthropic.com hero pattern. As the user scrolls down (over the
+   first ~480px), it smoothly grows to fill the full outer stage
+   edge-to-edge, corners flattening to 0. Past that range it just
+   stays full-bleed like a normal hero.
+
+   The square is computed from the box's own resting HEIGHT (outer
+   height minus a fixed vertical inset), then the horizontal inset is
+   derived so width == height — rather than using the same inset on
+   all four sides, which produces a squat rectangle whenever the
+   stage is much wider than it is tall (as it was before). --------- */
 function setupHeroScrollGrow(){
   const outer = document.getElementById('video-hero');
   const inner = document.getElementById('video-hero-inner');
   const content = document.getElementById('video-hero-content');
   if(!outer || !inner) return;
 
-  const GROW_RANGE = 480; // px of scroll over which the box fully opens
+  const GROW_RANGE = 480;       // px of scroll over which the box fully opens
+  const REST_INSET_Y = 160;     // vertical inset at rest (top & bottom) — tune this for a bigger/smaller resting square
+  const REST_RADIUS = 28;
   let ticking = false;
 
   function lerp(a,b,t){ return a + (b - a) * t; }
@@ -721,13 +731,16 @@ function setupHeroScrollGrow(){
     const raw = Math.min(Math.max(window.scrollY, 0), GROW_RANGE) / GROW_RANGE;
     const t = easeOutCubic(raw);
 
-    const insetX = lerp(180, 0, t);   // px inset from left/right at rest
-    const insetTop = lerp(180, 0, t); // px inset from top
-    const insetBottom = lerp(180, 0, t);
-    const radius = lerp(28, 0, t);
+    const outerRect = outer.getBoundingClientRect();
+    const restHeight = outerRect.height - REST_INSET_Y * 2;        // square side length at rest
+    const restInsetX = Math.max((outerRect.width - restHeight) / 2, 0);
 
-    inner.style.top = insetTop + 'px';
-    inner.style.bottom = insetBottom + 'px';
+    const insetX = lerp(restInsetX, 0, t);
+    const insetY = lerp(REST_INSET_Y, 0, t);
+    const radius = lerp(REST_RADIUS, 0, t);
+
+    inner.style.top = insetY + 'px';
+    inner.style.bottom = insetY + 'px';
     inner.style.left = insetX + 'px';
     inner.style.right = insetX + 'px';
     inner.style.borderRadius = radius + 'px';
@@ -741,6 +754,11 @@ function setupHeroScrollGrow(){
   update();
 
   window.addEventListener('scroll', () => {
+    if(!ticking){ requestAnimationFrame(update); ticking = true; }
+  }, { passive:true });
+
+  // Recompute the resting square if the viewport changes size
+  window.addEventListener('resize', () => {
     if(!ticking){ requestAnimationFrame(update); ticking = true; }
   }, { passive:true });
 }
