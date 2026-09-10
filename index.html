@@ -362,7 +362,7 @@ async function renderHome(){
         </div>
         <div class="video-hero" id="video-hero">
           <div class="video-hero-inner" id="video-hero-inner">
-            <video id="hero-video" src="video.mov" muted autoplay playsinline preload="auto"></video>
+            <video id="hero-video" src="video.mp4" muted autoplay playsinline preload="auto"></video>
           </div>
           <div class="post-video-cta" id="post-video-cta">
             <p class="lede">From the first question to the final paper: the ideas, experiments, analyses, and unfinished thoughts along the way.</p>
@@ -388,9 +388,9 @@ function setupHeroVideo(){
   const video = document.getElementById('hero-video');
   const cta = document.getElementById('post-video-cta');
   if(!video) return;
-  video.playbackRate = 0.9;
+  video.playbackRate = 1.0;
   video.play().catch(()=>{});
-  video.addEventListener('loadedmetadata', ()=>{ video.playbackRate = 0.9; });
+  video.addEventListener('loadedmetadata', ()=>{ video.playbackRate = 1.0; });
   video.addEventListener('ended', ()=>{ if(cta) cta.classList.add('show'); });
   setupHeroScrollGrow();
 }
