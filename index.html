@@ -24,7 +24,9 @@
   }
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
-  body{margin:0; background:var(--paper); color:var(--ink); font-family:var(--serif); -webkit-font-smoothing:antialiased; overflow-x: hidden;}
+  body{margin:0; background:var(--paper); color:var(--ink); font-family:var(--serif); -webkit-font-smoothing:antialiased; overflow-x: hidden; display:flex; flex-direction:column; min-height:100vh;}
+  header.masthead{ flex-shrink:0; }
+  footer{ flex-shrink:0; }
   a{color:inherit;}
   ::selection{background:var(--amber); color:var(--paper);}
   a:focus-visible, button:focus-visible{outline:2px solid var(--teal); outline-offset:3px;}
@@ -128,33 +130,49 @@
   .masthead-meta{font-family:var(--mono); font-size:0.72rem; color:var(--ink-soft); display:flex; gap:18px; padding-bottom:14px; transition: padding .35s ease, opacity .3s ease;}
   header.masthead.is-elevated .masthead-meta{ padding-bottom:10px; }
 
-  main{padding:40px 0 100px; min-height:40vh;}
+  main{padding:40px 0 100px; flex:1 0 auto;}
 
   /* --- HOMEPAGE LAYOUT --- */
   .home-layout { max-width:1200px; margin:0 auto; }
 
-  /* --- VIDEO HERO --- */
+  /* --- VIDEO HERO ───────────────────────────────────────────────
+     .video-hero is the full-bleed outer stage (always 100vw / 88vh,
+     defines the layout space). .video-hero-inner is the box that
+     starts small/rounded/inset and is grown toward full-bleed via
+     JS-driven inline styles as the user scrolls, so it reads as a
+     framed video clip that opens up into a full-screen hero. --- */
   .video-hero{
     width:100vw; position:relative; left:50%; right:50%;
     margin-left:-50vw; margin-right:-50vw;
-    height:88vh; min-height:520px; overflow:hidden; background:var(--ink);
+    height:88vh; min-height:520px; overflow:visible; background:transparent;
+  }
+  .video-hero-inner{
+    position:absolute;
+    overflow:hidden;
+    background:var(--ink);
+    border-radius:28px;
+    will-change:top,left,right,bottom,border-radius;
+    /* JS sets top/left/right/bottom/border-radius each frame based on scroll */
   }
   .video-hero video{
     position:absolute; top:50%; left:50%;
     width:100%; height:100%; object-fit:cover;
     transform:translate(-50%,-50%);
   }
-  .video-hero::after{
+  .video-hero-inner::after{
     content:''; position:absolute; inset:0;
     background:linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.15) 40%, rgba(0,0,0,0.55) 100%);
   }
   .video-hero-content{
     position:absolute; inset:0; z-index:2;
     max-width:1200px; margin:0 auto; padding:64px 28px 0;
+    pointer-events:none;
   }
   .video-hero-content h1{
     font-size:3.2rem; line-height:1.1; font-weight:500; margin:0;
     letter-spacing:-0.01em; color:var(--paper); max-width:20ch;
+    opacity:var(--hero-text-opacity, 1);
+    transition:opacity .25s ease;
   }
   @media (max-width:800px){ .video-hero{height:80vh;} }
 
@@ -632,9 +650,11 @@ async function renderHome(){
     const posts = await getManifest();
     app.innerHTML = `
       <div class="home-layout">
-        <div class="video-hero">
-          <video id="hero-video" src="video.mov" muted playsinline preload="auto"></video>
-          <div class="video-hero-content">
+        <div class="video-hero" id="video-hero">
+          <div class="video-hero-inner" id="video-hero-inner">
+            <video id="hero-video" src="video.mov" muted playsinline preload="auto"></video>
+          </div>
+          <div class="video-hero-content" id="video-hero-content">
             <h1>Every paper has a <span style="text-decoration:underline; text-decoration-color:var(--pulse); text-underline-offset:6px;">story</span>.</h1>
           </div>
           <div class="post-video-cta" id="post-video-cta">
@@ -662,8 +682,57 @@ function setupHeroVideo(){
   const video = document.getElementById('hero-video');
   const cta = document.getElementById('post-video-cta');
   if(!video) return;
+  video.playbackRate = 0.8;
   video.play().catch(()=>{});
+  video.addEventListener('loadedmetadata', ()=>{ video.playbackRate = 0.8; });
   video.addEventListener('ended', ()=>{ if(cta) cta.classList.add('show'); });
+  setupHeroScrollGrow();
+}
+
+/* ─── HERO SCROLL-GROW: small framed box -> full-bleed on scroll ───
+   At scrollY 0 the inner box sits inset within the outer stage with
+   rounded corners, like a framed video clip. As the user scrolls
+   down (over the first ~380px), it smoothly grows to fill the full
+   outer stage edge-to-edge, corners flattening to 0. Past that
+   range it just stays full-bleed like a normal hero. ──────────── */
+function setupHeroScrollGrow(){
+  const outer = document.getElementById('video-hero');
+  const inner = document.getElementById('video-hero-inner');
+  const content = document.getElementById('video-hero-content');
+  if(!outer || !inner) return;
+
+  const GROW_RANGE = 380; // px of scroll over which the box fully opens
+  let ticking = false;
+
+  function lerp(a,b,t){ return a + (b - a) * t; }
+  function easeOutCubic(t){ return 1 - Math.pow(1 - t, 3); }
+
+  function update(){
+    const raw = Math.min(Math.max(window.scrollY, 0), GROW_RANGE) / GROW_RANGE;
+    const t = easeOutCubic(raw);
+
+    const insetX = lerp(48, 0, t);   // px inset from left/right at rest
+    const insetTop = lerp(40, 0, t); // px inset from top
+    const insetBottom = lerp(40, 0, t);
+    const radius = lerp(28, 0, t);
+
+    inner.style.top = insetTop + 'px';
+    inner.style.bottom = insetBottom + 'px';
+    inner.style.left = insetX + 'px';
+    inner.style.right = insetX + 'px';
+    inner.style.borderRadius = radius + 'px';
+
+    if(content){ content.style.setProperty('--hero-text-opacity', String(0.55 + 0.45 * t)); }
+
+    ticking = false;
+  }
+
+  // Set initial frame before first paint
+  update();
+
+  window.addEventListener('scroll', () => {
+    if(!ticking){ requestAnimationFrame(update); ticking = true; }
+  }, { passive:true });
 }
 
 async function renderArchive(){
