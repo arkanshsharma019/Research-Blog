@@ -496,19 +496,9 @@ async function renderPost(id){
   }
 }
 
-async function renderAbout(){
-  const masthead = document.getElementById('masthead');
-  if(masthead) masthead.classList.remove('unsticky');
-  try{
-    const about = await getAbout();
-    app.innerHTML = about.html
-      ? about.html
-      : `<div class="error-note">about.json loaded but has no "html" field to render. Add one, or tell me your about.json shape and I'll write a proper renderer for it.</div>`;
-    setupFluidTabs();
-  }catch(e){
-    app.innerHTML = errorNote('Could not load about.json: ' + e.message);
-  }
-}
+/* ============================================================
+   ABOUT PAGE — built from structured about.json
+   ============================================================ */
 
 function cvItem(period, title, place, note, image){
   return `
@@ -524,6 +514,64 @@ function cvItem(period, title, place, note, image){
       </div>
     </div>
   `;
+}
+
+function contactIconsHtml(contacts){
+  if(!contacts || !contacts.length) return '';
+  return `<div class="contact-icons">${contacts.map(c => `
+    <a href="${c.href}" target="_blank" rel="noopener noreferrer" title="${c.label}">${iconForLabel(c.label)}</a>
+  `).join('')}</div>`;
+}
+
+function buildAboutHtml(about){
+  const profileHtml = `
+    <div class="profile-row">
+      ${about.photo ? `<img class="profile-photo" src="${about.photo}" alt="${about.name || ''}">` : ''}
+      <div class="profile-info">
+        <h1>${about.name || ''}</h1>
+        ${about.title ? `<p class="profile-title">${about.title}</p>` : ''}
+        ${about.bio ? `<p>${about.bio}</p>` : ''}
+        ${contactIconsHtml(about.contacts)}
+      </div>
+    </div>
+  `;
+
+  const tabDefs = [
+    { key:'research',  label:'Research',  data:about.research,  map:r => cvItem(r.period, r.role,   r.place, r.note, r.image) },
+    { key:'education', label:'Education', data:about.education, map:e => cvItem(e.period, e.degree, e.place, e.note, e.image) },
+    { key:'awards',    label:'Awards',    data:about.awards,    map:a => cvItem(a.period, a.title,  a.place, a.note, a.image) },
+  ].filter(t => Array.isArray(t.data) && t.data.length);
+
+  if(!tabDefs.length) return profileHtml;
+
+  const tabsHtml = `
+    <div class="cv-tabs">
+      ${tabDefs.map((t,i) => `
+        <button class="cv-tab${i===0 ? ' active' : ''}" data-panel="panel-${t.key}">
+          <span class="tab-label">${t.label}</span>
+        </button>
+      `).join('')}
+    </div>
+    ${tabDefs.map((t,i) => `
+      <div class="cv-panel${i===0 ? ' active' : ''}" id="panel-${t.key}">
+        ${t.data.map(t.map).join('')}
+      </div>
+    `).join('')}
+  `;
+
+  return profileHtml + tabsHtml;
+}
+
+async function renderAbout(){
+  const masthead = document.getElementById('masthead');
+  if(masthead) masthead.classList.remove('unsticky');
+  try{
+    const about = await getAbout();
+    app.innerHTML = buildAboutHtml(about);
+    setupFluidTabs();
+  }catch(e){
+    app.innerHTML = errorNote('Could not load about.json: ' + e.message);
+  }
 }
 
 function setupFluidTabs(){
@@ -568,7 +616,7 @@ function setupFluidTabs(){
 }
 
 /* ============================================================
-   ROUTER + NAV WIRING (this is the part that was missing)
+   ROUTER + NAV WIRING
    ============================================================ */
 
 function updateNavPill(activeKey){
