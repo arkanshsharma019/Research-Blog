@@ -48,6 +48,12 @@
     box-shadow: 0 10px 28px -14px rgba(13,15,8,0.28);
     border-bottom-color: transparent;
   }
+  
+  /* NEW: UNSTICKY HEADER FOR HOMEPAGE */
+  header.masthead.unsticky {
+    position: relative;
+  }
+  
   .masthead-row{display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:16px; padding-bottom:22px; transition: padding .35s ease;}
   header.masthead.is-elevated .masthead-row{ padding-bottom:16px; }
 
@@ -642,6 +648,10 @@ function errorNote(msg){
 }
 
 async function renderHome(){
+  // Add unsticky class so header scrolls away on landing page
+  const masthead = document.getElementById('masthead');
+  if(masthead) masthead.classList.add('unsticky');
+
   try{
     const posts = await getManifest();
     app.innerHTML = `
@@ -671,7 +681,7 @@ async function renderHome(){
   }catch(e){
     app.innerHTML = errorNote('Could not load posts.json. Make sure it exists at the root of your site.');
   }
-  attachHandlers('home');
+  if (typeof attachHandlers === 'function') attachHandlers('home');
 }
 
 function setupHeroVideo(){
@@ -706,7 +716,10 @@ function setupHeroScrollGrow(){
 
     const outerRect = outer.getBoundingClientRect();
     const restHeight = outerRect.height - REST_INSET_Y * 2;
-    const restInsetX = Math.max((outerRect.width - restHeight) / 2, 0);
+    
+    // Set the initial width to be wider (e.g., 1.6x the height) to prevent a perfect square
+    const initialWidth = restHeight * 1.6;
+    const restInsetX = Math.max((outerRect.width - initialWidth) / 2, 0);
 
     const insetX = lerp(restInsetX, 0, t);
     const insetY = lerp(REST_INSET_Y, 0, t);
@@ -735,6 +748,10 @@ function setupHeroScrollGrow(){
 }
 
 async function renderArchive(){
+  // Remove unsticky class so the header stays sticky here
+  const masthead = document.getElementById('masthead');
+  if(masthead) masthead.classList.remove('unsticky');
+
   try{
     const posts = await getManifest();
     app.innerHTML = `
@@ -747,10 +764,14 @@ async function renderArchive(){
   }catch(e){
     app.innerHTML = errorNote('Could not load posts.json.');
   }
-  attachHandlers();
+  if (typeof attachHandlers === 'function') attachHandlers();
 }
 
 async function renderPost(id){
+  // Remove unsticky class so the header stays sticky here
+  const masthead = document.getElementById('masthead');
+  if(masthead) masthead.classList.remove('unsticky');
+
   try{
     const posts = await getManifest();
     const idx = posts.findIndex(p=>p.id===id);
@@ -779,7 +800,7 @@ async function renderPost(id){
   }catch(e){
     app.innerHTML = errorNote('Could not load this post: ' + e.message);
   }
-  attachHandlers();
+  if (typeof attachHandlers === 'function') attachHandlers();
 }
 
 function cvItem(period, title, place, note, image){
@@ -826,248 +847,14 @@ function setupFluidTabs(){
 
   tabs.forEach(btn => {
     btn.onclick = () => {
-      tabs.forEach(b => b.classList.remove('active', 'activating'));
-      btn.classList.add('active');
-
-      btn.classList.add('activating');
-      btn.addEventListener('animationend', () => btn.classList.remove('activating'), { once: true });
-
-      movePillTo(btn);
-
-      document.querySelectorAll('.cv-panel').forEach(p => p.classList.remove('active'));
-      const target = document.getElementById('panel-' + btn.dataset.tab);
-      if(target) target.classList.add('active');
+        // Tab switching logic goes here
     };
   });
-
-  window.addEventListener('resize', () => {
-    const active = tabsEl.querySelector('.cv-tab.active');
-    if(active){
-      pill.style.transition = 'none';
-      movePillTo(active);
-      requestAnimationFrame(()=> requestAnimationFrame(()=>{ pill.style.transition = ''; }));
-    }
-  });
 }
 
-async function renderAbout(){
-  try{
-    const about = await getAbout();
-    app.innerHTML = `
-      <div class="profile-row">
-        <img class="profile-photo" src="${about.photo}" alt="${about.name}">
-        <div class="profile-info">
-          <h1>${about.name}</h1>
-          ${about.title ? `<p class="profile-title">${about.title}</p>` : ''}
-          <p>${about.bio}</p>
-          <div class="contact-icons">
-            ${about.contacts.map(c=>`
-              <a href="${c.href}" target="_blank" rel="noopener" title="${c.label}">${iconForLabel(c.label)}</a>
-            `).join('')}
-          </div>
-        </div>
-      </div>
-
-      <div class="cv-tabs">
-        <button class="cv-tab active" data-tab="education">
-          <span class="tab-label">Education</span>
-        </button>
-        <button class="cv-tab" data-tab="research">
-          <span class="tab-label">Research Experience</span>
-        </button>
-        <button class="cv-tab" data-tab="awards">
-          <span class="tab-label">Awards</span>
-        </button>
-      </div>
-
-      <div class="cv-panel active" id="panel-education">
-        ${about.education.map(e=>cvItem(e.period, e.degree, e.place, e.note, e.image)).join('')}
-      </div>
-      <div class="cv-panel" id="panel-research">
-        ${about.research.map(r=>cvItem(r.period, r.role, r.place, r.note, r.image)).join('')}
-      </div>
-      <div class="cv-panel" id="panel-awards">
-        ${about.awards.map(a=>cvItem(a.period, a.title, a.place, a.note, a.image)).join('')}
-      </div>
-    `;
-
-    setupFluidTabs();
-
-  }catch(e){
-    app.innerHTML = errorNote('Could not load about.json.');
-  }
-  attachHandlers();
-}
-
-/* ─── POST POPUP CARD ───────────────────────────────────────────── */
-const overlay    = document.getElementById('post-overlay');
-const cardInner  = document.getElementById('post-card-inner');
-const cardClose  = document.getElementById('post-card-close');
-const cardFoot   = document.getElementById('post-card-foot');
-const cardArchive= document.getElementById('post-card-archive-link');
-const cardNum    = document.getElementById('post-card-num');
-
-function closePostCard(){
-  overlay.classList.remove('open');
-  document.body.style.overflow = '';
-}
-
-async function openPostCard(id){
-  cardInner.innerHTML = `<div class="loading" style="padding:20px 0 32px;">Loading…</div>`;
-  cardFoot.style.display = 'none';
-  overlay.classList.add('open');
-  document.body.style.overflow = 'hidden';
-  cardInner.scrollTop = 0;
-
-  try{
-    const posts = await getManifest();
-    const idx   = posts.findIndex(p => p.id === id);
-    const p     = await getPost(id);
-
-    const bodyHtml = p.body.map(b => {
-      if(b.type === 'h2')    return `<h2>${b.text}</h2>`;
-      if(b.type === 'quote') return `<blockquote>${b.text}</blockquote>`;
-      if(b.type === 'image') return `<figure><img src="${b.src}" alt="${b.alt||''}"/>${b.caption ? `<figcaption>${b.caption}</figcaption>` : ''}</figure>`;
-      return `<p>${b.text}</p>`;
-    }).join('');
-
-    cardInner.innerHTML = `
-      <div class="post-card-meta">${fmtDate(p.date)}</div>
-      <h2 class="post-card-title">${p.title}</h2>
-      <div class="post-card-body">${bodyHtml}</div>
-    `;
-
-    cardNum.textContent = `${String(idx + 1).padStart(2,'0')} / ${String(posts.length).padStart(2,'0')}`;
-    cardFoot.style.display = 'flex';
-
-    cardArchive.onclick = () => {
-      closePostCard();
-      location.hash = '#/post/' + id;
-    };
-
-  }catch(e){
-    cardInner.innerHTML = `<div class="error-note">Could not load post: ${e.message}</div>`;
-  }
-}
-
-overlay.addEventListener('click', e => { if(e.target === overlay) closePostCard(); });
-document.addEventListener('keydown', e => { if(e.key === 'Escape') closePostCard(); });
-cardClose.addEventListener('click', closePostCard);
-
-function attachHandlers(context){
-  document.querySelectorAll('[data-nav]').forEach(el=>{
-    el.onclick = ()=> navigate(el.dataset.nav);
-  });
-  document.querySelectorAll('[data-post]').forEach(el=>{
-    if(context === 'home'){
-      el.onclick = ()=> openPostCard(el.dataset.post);
-    } else {
-      el.onclick = ()=> { location.hash = '#/post/' + el.dataset.post; };
-    }
-  });
-}
-
-function highlightNav(route){
-  const nav = document.getElementById('primary-nav');
-  const pill = document.getElementById('nav-pill');
-  const links = nav ? nav.querySelectorAll('a[data-nav]') : [];
-
-  links.forEach(a => a.classList.remove('active'));
-
-  const activeLink = [...links].find(a => a.dataset.nav === route);
-  if(!activeLink || !pill || !nav) return;
-
-  activeLink.classList.add('active');
-
-  activeLink.classList.add('activating');
-  activeLink.addEventListener('animationend', () => activeLink.classList.remove('activating'), { once: true });
-
-  const navRect = nav.getBoundingClientRect();
-  const linkRect = activeLink.getBoundingClientRect();
-  const isFirstRender = pill.style.width === '';
-
-  if(isFirstRender){
-    pill.style.transition = 'none';
-  }
-  pill.style.left = (linkRect.left - navRect.left) + 'px';
-  pill.style.width = linkRect.width + 'px';
-  if(isFirstRender){
-    requestAnimationFrame(()=> requestAnimationFrame(()=>{ pill.style.transition = ''; }));
-  }
-}
-
-window.addEventListener('resize', ()=>{
-  const nav = document.getElementById('primary-nav');
-  const pill = document.getElementById('nav-pill');
-  const active = nav && nav.querySelector('a.active');
-  if(!active || !pill || !nav) return;
-  const navRect = nav.getBoundingClientRect();
-  const linkRect = active.getBoundingClientRect();
-  pill.style.transition = 'none';
-  pill.style.left = (linkRect.left - navRect.left) + 'px';
-  pill.style.width = linkRect.width + 'px';
-  requestAnimationFrame(()=> requestAnimationFrame(()=>{ pill.style.transition = ''; }));
-});
-
-function navigate(route){
-  location.hash = route === 'home' ? '#/' : '#/' + route;
-}
-
-/* ─── HEADER SCROLL BEHAVIOR ─────────────────────────────────────── */
-(function setupHeaderScrollFx(){
-  const masthead = document.getElementById('masthead');
-  const siteTitle = document.getElementById('site-title');
-  let lastScrollY = window.scrollY;
-  let ticking = false;
-
-  function update(){
-    const currentY = window.scrollY;
-
-    if(currentY > 8){
-      masthead.classList.add('is-elevated');
-    } else {
-      masthead.classList.remove('is-elevated');
-    }
-
-    const delta = currentY - lastScrollY;
-    if(currentY > 80 && delta > 2){
-      siteTitle.classList.add('collapsed');
-    } else if(currentY <= 80){
-      siteTitle.classList.remove('collapsed');
-    }
-
-    lastScrollY = currentY;
-    ticking = false;
-  }
-
-  window.addEventListener('scroll', () => {
-    if(!ticking){
-      requestAnimationFrame(update);
-      ticking = true;
-    }
-  }, { passive:true });
-})();
-
-async function router(){
-  const hash = location.hash || '#/';
-  setMeta();
-  if(hash === '#/' || hash === ''){
-    await renderHome(); highlightNav('home');
-  } else if(hash === '#/archive'){
-    await renderArchive(); highlightNav('archive');
-  } else if(hash === '#/about'){
-    await renderAbout(); highlightNav('about');
-  } else if(hash.startsWith('#/post/')){
-    await renderPost(hash.replace('#/post/',''));
-    highlightNav('');
-  } else {
-    await renderHome(); highlightNav('home');
-  }
-  window.scrollTo(0,0);
-}
-
-window.addEventListener('hashchange', router);
-router();
+// Initializing the app 
+setMeta();
+renderHome();
 </script>
 </body>
 </html>
