@@ -1,0 +1,37 @@
+{
+  "title": "Seizing the Data: The True Burden of Headaches in Epilepsy",
+  "date": "2026-09-10",
+  "body": [
+    { "type": "p", "text": "The talks for this paper started in early 2025, when a few of my colleagues were looking at potential collaborations in the field of epilepsy. We were brainstorming randomly. The technique I often use is to pick a topic — say like epilepsy — and try joining it with other fields (maybe stroke, cognition, or movement disorders) to see what intersections have active research gaps. While brainstorming, the idea stuck with me: what if we do something related to epilepsy and headaches?" },
+
+    { "type": "p", "text": "When we searched the literature, we found a previous <a href=\"https://link.springer.com/article/10.1186/s10194-020-1074-0\" target=\"_blank\" rel=\"noopener\">meta-analysis by Duko et al.</a> that had covered data up until 2019. They had included only 17 studies, but the problem was that some of the studies they included were not actually related to epilepsy and headache. We even tried writing a letter to the journal, but I think it got ignored. As we actively searched further, we realized that even up until 2019, they had missed a lot of articles — to the extent that when we searched for articles till 2025, we found close to 70 inclusions, the majority of which were published before 2019. There was a huge gap in the literature that needed to be updated, and a new study was hence required. We also realized we could include the pediatric population, something that was entirely ignored in their previous work." },
+
+    { "type": "p", "text": "One of the earliest challenges in the project was defining headache comorbidity in epilepsy. We had to clarify a distinct difference: is it epilepsy causing the headache, or is it a headache that is comorbid with epilepsy as a separate entity? This was a clear distinction we had to make to extract the studies accurately." },
+
+    { "type": "p", "text": "While discussing this with Dr. Mamta Bhushan at AIIMS, we decided that headaches in epilepsy should be categorized into two broad groups: Headaches Temporally Related to Seizures (HTRS) and Headaches with Unspecified Temporal Relationship (HUTR)." },
+
+    { "type": "p", "text": "HTRS refers to headaches that are temporally or mechanistically linked to seizure activity. These can be further classified into peri-ictal and interictal headaches. Peri-ictal headaches occur in close temporal relation to seizures and are subdivided into pre-ictal headaches (occurring within 24 hours before seizure onset), ictal headaches (developing simultaneously with the seizure), and post-ictal headaches (beginning within 3 hours after seizure termination and resolving within 72 hours). Interictal headaches occur between seizures without a direct temporal association and are thought to reflect shared mechanisms, such as cortical hyperexcitability." },
+
+    { "type": "p", "text": "HUTR, in contrast, refers to reports of headache disorders in people with epilepsy where the temporal relationship to seizures is not described. These are usually classified as migraine and tension-type headaches (TTH)." },
+
+    { "type": "p", "text": "We had a lot of back-and-forth with the reviewers to explain why this systematic classification is better and how it addressed the gaps left by Duko et al.'s work." },
+
+    { "type": "p", "text": "Figuring this out took a lot of time. We had initially extracted the data, noticed the classification problem, developed this new scheme, and then had to re-extract everything according to the new framework. There were numerous data extraction issues; even with a 6-member team doing multiple rounds of revision, it's incredibly easy to miss things when you are dealing with 70 studies." },
+
+    { "type": "p", "text": "When polishing the analysis, the number of subgroups became overwhelming. We had approximately 20 subgroups based on the HTRS/HUTR classifications, country-specific data, and pediatric data. It was incredibly difficult to re-analyze everything whenever a small change was introduced. During this analysis, we also added world maps inspired by the Global Burden of Disease (GBD) studies to account for geographical distribution." },
+
+    { "type": "p", "text": "One interesting thing I learned is that in prevalence studies, standard publication bias techniques like funnel plots and Egger's test just don't work well. There is a beautifully written <a href=\"https://doi.org/10.1016/S2666-5247(23)00096-4\" target=\"_blank\" rel=\"noopener\">letter in The Lancet Microbiology</a> explaining that prevalence studies are inherently expected to have high heterogeneity, which causes normal publication bias tests to fail. Because of this, we used a Doi plot and calculated the Luis Furuya-Kanamori (LFK) index, which provides a quantitative measure of asymmetry. Unlike traditional funnel plots, the Doi plot offers improved sensitivity for detecting publication bias, particularly in meta-analyses dealing with proportions or prevalence data. The scoring is straightforward: an LFK index within ±1 suggests no asymmetry, values between ±1 and ±2 indicate minor asymmetry, and values beyond ±2 suggest major asymmetry." },
+
+    { "type": "p", "text": "Another massive challenge I faced was coordinating an incredibly large team. We had 8 of us in total: 6 MBBS students and 1 PhD student across different states in India, coordinating with an MSc student in the UK for over 6 months, along with a faculty in India and 3 faculty members from 2 different US universities who were called in for senior review and mentorship. Coordinating between different time zones with this massive workload was a real challenge for me, but I learned a lot about effective team management and coping skills." },
+
+    { "type": "p", "text": "This paper went through two rounds of peer review, with an additional round of changes requested to perform further subgroup analyses based on the diagnostic criteria for both epilepsy and headache, as well as accounting for the different anti-seizure medications used. This, of course, meant the trouble of re-extracting data all over again. But finally, even with the weight of these heavy subgroups, we were able to formulate a massive prevalence study." },
+
+    { "type": "p", "text": "Providing the current literature data on the burden of headache among people with epilepsy, our final conclusions were:" },
+
+    { "type": "p", "text": "• Headache affects two in five people with epilepsy worldwide.<br>• One in four children with epilepsy reports headaches.<br>• Interictal and postictal headaches are the most common.<br>• Migraine and tension-type headaches predominate.<br>• Headache prevalence varies by region and Anti-Seizure Medication (ASM) regimen." },
+
+    { "type": "p", "text": "At the end of the paper, we emphasized that headache is a symptom that is far too commonly ignored in clinics. Many clinicians fail to recognize it as a symptom with high comorbidity. Ultimately, this paper is a call to action for the medical community to take headaches seriously, especially among children across both developing and developed countries." },
+
+    { "type": "p", "text": "The full paper is available here: <a href=\"https://doi.org/10.1016/j.seizure.2026.02.015\" target=\"_blank\" rel=\"noopener\">https://doi.org/10.1016/j.seizure.2026.02.015</a>" }
+  ]
+}
