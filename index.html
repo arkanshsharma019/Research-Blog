@@ -64,9 +64,9 @@
     letter-spacing:-0.01em;
     white-space:nowrap;
     transition:
-      max-width .9s cubic-bezier(0.22,1.12,0.36,1),
-      opacity .6s ease,
-      letter-spacing .7s ease;
+      max-width 1.8s cubic-bezier(0.22,1.12,0.36,1),
+      opacity 1.2s ease,
+      letter-spacing 1.4s ease;
   }
   .site-title .title-initials{
     display:inline-block;
@@ -76,9 +76,9 @@
     white-space:nowrap;
     letter-spacing:0.12em;
     transition:
-      max-width .9s cubic-bezier(0.22,1.12,0.36,1),
-      opacity .7s ease .08s,
-      letter-spacing .8s cubic-bezier(0.22,1.12,0.36,1) .08s;
+      max-width 1.8s cubic-bezier(0.22,1.12,0.36,1),
+      opacity 1.4s ease .16s,
+      letter-spacing 1.6s cubic-bezier(0.22,1.12,0.36,1) .16s;
   }
   .site-title.collapsed .title-text{
     max-width:0;
@@ -93,7 +93,7 @@
   .site-title .dot{
     color:var(--amber);
     display:inline-block;
-    transition: transform .8s cubic-bezier(0.22,1.12,0.36,1);
+    transition: transform 1.6s cubic-bezier(0.22,1.12,0.36,1);
   }
   .site-title.collapsed .dot{
     transform: scale(1.25);
@@ -134,6 +134,16 @@
 
   /* --- HOMEPAGE LAYOUT --- */
   .home-layout { max-width:1200px; margin:0 auto; }
+
+  /* --- HERO HEADING (sits above the video, not overlaid on it) --- */
+  .hero-heading{
+    max-width:1200px; margin:0 auto; padding:24px 28px 40px;
+  }
+  .hero-heading h1{
+    font-size:3.6rem; line-height:1.15; font-weight:500; margin:0;
+    letter-spacing:-0.01em; color:var(--ink); max-width:22ch;
+  }
+  @media (max-width:800px){ .hero-heading h1{ font-size:2.4rem; } }
 
   /* --- VIDEO HERO ───────────────────────────────────────────────
      .video-hero is the full-bleed outer stage (always 100vw / 88vh,
@@ -650,12 +660,12 @@ async function renderHome(){
     const posts = await getManifest();
     app.innerHTML = `
       <div class="home-layout">
+        <div class="hero-heading">
+          <h1>Every paper has a <span style="text-decoration:underline; text-decoration-color:var(--pulse); text-underline-offset:6px;">story</span>.</h1>
+        </div>
         <div class="video-hero" id="video-hero">
           <div class="video-hero-inner" id="video-hero-inner">
             <video id="hero-video" src="video.mov" muted playsinline preload="auto"></video>
-          </div>
-          <div class="video-hero-content" id="video-hero-content">
-            <h1>Every paper has a <span style="text-decoration:underline; text-decoration-color:var(--pulse); text-underline-offset:6px;">story</span>.</h1>
           </div>
           <div class="post-video-cta" id="post-video-cta">
             <p class="lede">From the first question to the final paper: the ideas, experiments, analyses, and unfinished thoughts along the way.</p>
@@ -682,9 +692,9 @@ function setupHeroVideo(){
   const video = document.getElementById('hero-video');
   const cta = document.getElementById('post-video-cta');
   if(!video) return;
-  video.playbackRate = 0.8;
+  video.playbackRate = 0.6;
   video.play().catch(()=>{});
-  video.addEventListener('loadedmetadata', ()=>{ video.playbackRate = 0.8; });
+  video.addEventListener('loadedmetadata', ()=>{ video.playbackRate = 0.6; });
   video.addEventListener('ended', ()=>{ if(cta) cta.classList.add('show'); });
   setupHeroScrollGrow();
 }
@@ -692,7 +702,7 @@ function setupHeroVideo(){
 /* ─── HERO SCROLL-GROW: small framed box -> full-bleed on scroll ───
    At scrollY 0 the inner box sits inset within the outer stage with
    rounded corners, like a framed video clip. As the user scrolls
-   down (over the first ~380px), it smoothly grows to fill the full
+   down (over the first ~480px), it smoothly grows to fill the full
    outer stage edge-to-edge, corners flattening to 0. Past that
    range it just stays full-bleed like a normal hero. ──────────── */
 function setupHeroScrollGrow(){
@@ -701,7 +711,7 @@ function setupHeroScrollGrow(){
   const content = document.getElementById('video-hero-content');
   if(!outer || !inner) return;
 
-  const GROW_RANGE = 380; // px of scroll over which the box fully opens
+  const GROW_RANGE = 480; // px of scroll over which the box fully opens
   let ticking = false;
 
   function lerp(a,b,t){ return a + (b - a) * t; }
@@ -711,9 +721,9 @@ function setupHeroScrollGrow(){
     const raw = Math.min(Math.max(window.scrollY, 0), GROW_RANGE) / GROW_RANGE;
     const t = easeOutCubic(raw);
 
-    const insetX = lerp(48, 0, t);   // px inset from left/right at rest
-    const insetTop = lerp(40, 0, t); // px inset from top
-    const insetBottom = lerp(40, 0, t);
+    const insetX = lerp(180, 0, t);   // px inset from left/right at rest
+    const insetTop = lerp(180, 0, t); // px inset from top
+    const insetBottom = lerp(180, 0, t);
     const radius = lerp(28, 0, t);
 
     inner.style.top = insetTop + 'px';
@@ -1036,12 +1046,13 @@ function navigate(route){
     }
 
     // Wordmark collapse: shrink to "RN." once scrolled down a bit and
-    // still moving down; expand back to full name on any upward scroll
-    // or once back near the top. Avoids flicker on tiny scroll jitter.
+    // still moving down. Only expand back to the full name once the
+    // user has scrolled back up near the very top of the page — not
+    // on every small upward wiggle mid-page.
     const delta = currentY - lastScrollY;
     if(currentY > 80 && delta > 2){
       siteTitle.classList.add('collapsed');
-    } else if(delta < -2 || currentY <= 80){
+    } else if(currentY <= 80){
       siteTitle.classList.remove('collapsed');
     }
 
