@@ -1,0 +1,21 @@
+{
+  "title": "From Concussion to Convulsion: Following the Brain's Drainage Map",
+  "date": "2026-10-03",
+  "body": [
+    { "type": "p", "text": "Glymphatic dysfunction has become one of the hottest topics in neuroimaging, especially in Asian research groups. Almost every week a new paper links DTI-ALPS to some neurological disease. Rishu Raj asked me whether there was a simple neuroradiology review we could finish quickly, and glymphatic dysfunction seemed the obvious candidate. Our earlier work gave us confidence. Our paper on <a href=\"https://doi.org/10.1016/j.jns.2025.125496\" target=\"_blank\" rel=\"noopener\">traumatic brain injury and glymphatic dysfunction</a> was well received at the World Congress of Neurology 2025, where we showed that mean DTI-ALPS values are lower in people with TBI. That made me wonder whether similar work could be done for Alzheimer's disease, Parkinson's disease, or epilepsy." },
+
+    { "type": "p", "text": "A quick search showed that Alzheimer's and Parkinson's had already been covered extensively, but epilepsy remained largely untouched. There was no comprehensive review of glymphatic dysfunction in epilepsy, even though PubMed held a wealth of primary studies. The next question was which outcomes to pool. In our TBI paper, Pearson and Spearman correlations rarely yielded a significant pooled result on their own. This time, we also pooled mean differences in DTI-ALPS between patients and healthy controls. We split the analysis by epilepsy type, and beyond disease duration, we looked at age, age at onset, seizure frequency, and individual seizure duration." },
+
+    { "type": "p", "text": "Data extraction was by far the hardest part. Many groups publish several papers from the same cohort, and some institutions release updated versions of earlier work using overlapping data. We had to carefully identify these overlaps and keep only the most recent papers. But the most important lesson during this phase came from our supervisor, Dr. Poojith Nuthalapati. He corrected us on something fundamental: DTI-ALPS is a proxy for glymphatic function, not a direct measure of it. Any link between epilepsy and glymphatic dysfunction established through this metric had to be framed with that caveat. We built that caution into the foundation of the paper, and the peer reviewers appreciated it." },
+
+    { "type": "p", "text": "After about two months, the manuscript was ready. I argued for submitting to <em>Seizure</em>, assuming their review process was faster, based on a sluggish experience I previously had with <em>Epilepsy &amp; Behavior</em>. Dr. Nuthalapati, however, preferred <em>Epilepsy &amp; Behavior</em>, so we submitted there. The first round of peer review came back in about a month, and I was thrilled to be proven wrong." },
+
+    { "type": "p", "text": "While our paper was still under review, <a href=\"https://doi.org/10.1016/j.seizure.2026.04.010\" target=\"_blank\" rel=\"noopener\">Lee et al.</a> published a related meta-analysis in <em>Seizure</em>. It was a solid paper, but it asked a narrower question. It pooled 10 studies (449 patients) and examined a single relationship: the correlation between DTI-ALPS and epilepsy duration, with no control group. Our review included 17 studies, with 15 (675 patients and 580 healthy controls) in the primary analysis. We showed that DTI-ALPS is lower in epilepsy than in controls, tested this across focal, generalized, and unclassified epilepsy, and examined multiple other clinical variables." },
+
+    { "type": "p", "text": "Interestingly, both papers landed on nearly the same duration result (r ≈ −0.37 in theirs, −0.39 in ours), which only strengthens the finding for the wider scientific community. Each review turned out to be unique, and the overlap made the two papers complement each other rather than compete." },
+
+    { "type": "p", "text": "In the end, I argued for the \"faster\" journal and lost the debate, while the slower-looking one gave us a quick review and a paper that stood firmly on its own. Sometimes the supervisor is right, and the best you can do is write it down in a blog." },
+
+    { "type": "p", "text": "The full paper is available here: <a href=\"https://doi.org/10.1016/j.yebeh.2026.111141\" target=\"_blank\" rel=\"noopener\">https://doi.org/10.1016/j.yebeh.2026.111141</a>" }
+  ]
+}
