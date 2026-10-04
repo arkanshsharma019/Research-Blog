@@ -1,10 +1,5 @@
 [
   {
-    "id": "glp1-receptor-agonists-parkinsons-nma",
-    "title": "Efficacy of GLP-1 receptor agonists in Parkinson’s disease: a systematic review and exploratory network meta-analysis of randomized controlled trials",
-    "date": "2026-04-17"
-  },
-  {
     "id": "aria-risk-monoclonal-antibodies-nma",
     "title": "Comparative risk of amyloid-related imaging abnormalities with anti–amyloid-β monoclonal antibodies: A systematic review and penalized likelihood network meta-analysis of randomized trials",
     "date": "2026-09-05"
@@ -18,5 +13,10 @@
     "id": "glymphatic-dysfunction-epilepsy-meta-analysis",
     "title": "Glymphatic system dysfunction in epilepsy: a systematic review and meta-analysis",
     "date": "2026-10-03"
+  },
+  {
+    "id": "glp1-receptor-agonists-parkinsons-nma",
+    "title": "Efficacy of GLP-1 receptor agonists in Parkinson’s disease: a systematic review and exploratory network meta-analysis of randomized controlled trials",
+    "date": "2026-10-04"
   }
 ]
