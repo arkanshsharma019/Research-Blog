@@ -1,0 +1,21 @@
+{
+  "title": "Racing the Wave: Pooling the Evidence on GLP-1 Receptor Agonists in Parkinson's Disease",
+  "date": "2026-04-17",
+  "body": [
+    { "type": "p", "text": "When our GLP-1 paper was published, it surprised everyone on the team. Nothing was wrong with the paper. What caught us off guard was the number of other papers landing at the same time, left, right and center. Every week felt like a race we were quietly losing, as the novelty of our work slipped away with each new publication." },
+
+    { "type": "p", "text": "The story starts in January 2025, when Muaz Ali approached me with news: the latest trial of exenatide, by Vijiaratnam et al., had just been <a href=\"https://doi.org/10.1016/S0140-6736(24)02808-3\" target=\"_blank\" rel=\"noopener\">published in The Lancet</a>. The field is new and growing fast, so we thought we could take that trial and update the existing meta-analyses on the topic. We began finding the few trials that existed and extracting their data." },
+
+    { "type": "p", "text": "While we were extracting, a <a href=\"https://doi.org/10.1016/j.parkreldis.2025.107798\" target=\"_blank\" rel=\"noopener\">letter appeared</a> responding to a previous review. It pointed out that the <a href=\"https://doi.org/10.1016/j.parkreldis.2024.107220\" target=\"_blank\" rel=\"noopener\">earlier review by Albuquerque</a> had included Hogg et al., \"A Phase II, Randomized, Double-Blinded, Placebo-Controlled Trial of Liraglutide in Parkinson's Disease.\" In a field with so few trials, including it is understandable. But the study dates from 2012 and has never been published in full. This raises a fair doubt: without a peer-reviewed publication, its results cannot be properly compared or analyzed. For this reason, we removed Hogg et al. from our analysis too." },
+
+    { "type": "p", "text": "Then a <a href=\"https://doi.org/10.1212/CPJ.0000000000200548\" target=\"_blank\" rel=\"noopener\">meta-analysis by Costa et al.</a> came out in Neurology Clinical Practice, the Green Journal. However, because of their pairwise meta-analytic framework, they included only placebo-controlled studies. We built on this by also including trials with an active control, incorporating them into our network meta-analysis. We therefore framed the paper in a stepwise fashion: first a pairwise meta-analysis with drug-wise pooling, and then a comparison of the different drugs within a network meta-analysis framework. This allowed us to include both placebo-controlled and active-controlled trials, so no trials had to be excluded." },
+
+    { "type": "p", "text": "We submitted to Neurological Sciences, and peer review asked us to add adverse events, which the other reviews had not done. In a new drug class, that was a very apt request. We extracted nausea, vomiting, constipation, weight loss, headache, anxiety, UTI, administration site disorders, and treatment-related major adverse events. In a field racing to prove a new class of drug works, it was the reviewer's push to count the costs, not just the benefits, that made our paper more complete than the rest." },
+
+    { "type": "p", "text": "In the end, our conclusions were:" },
+
+    { "type": "p", "text": "• Pooled across 5 RCTs, GLP-1 receptor agonists showed no significant improvement in motor scores (MDS-UPDRS Part III ON: MD −2.00, 95% CI −5.46 to 1.46).<br>• The network analysis found dose-specific ON-state benefit, mainly with exenatide 20 µg/day (MD −9.80) and lixisenatide 20 µg/day (MD −3.08).<br>• There was no consistent benefit for OFF-state motor function, other MDS-UPDRS parts, PDQ-39, or NMSS, so no clear disease-modifying effect.<br>• Side effects were mainly gastrointestinal (nausea, vomiting, constipation), plus weight loss." },
+
+    { "type": "p", "text": "The full paper is available here: <a href=\"https://link.springer.com/article/10.1007/s10072-026-08929-1\" target=\"_blank\" rel=\"noopener\">https://link.springer.com/article/10.1007/s10072-026-08929-1</a>" }
+  ]
+}
