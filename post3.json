@@ -2,6 +2,13 @@
   "title": "From Concussion to Convulsion: Following the Brain's Drainage Map",
   "date": "2026-10-03",
   "body": [
+    {
+      "type": "image",
+      "src": "images/gf3.png",
+      "alt": "Graphical abstract: DTI-ALPS is reduced in epilepsy (17 studies; pooled MD -0.157, 95% CI -0.197 to -0.116) and is associated with longer disease duration.",
+      "caption": "Graphical abstract"
+    },
+
     { "type": "p", "text": "Glymphatic dysfunction has become one of the hottest topics in neuroimaging, especially in Asian research groups. Almost every week a new paper links DTI-ALPS to some neurological disease. Rishu Raj asked me whether there was a simple neuroradiology review we could finish quickly, and glymphatic dysfunction seemed the obvious candidate. Our earlier work gave us confidence. Our paper on <a href=\"https://doi.org/10.1016/j.jns.2025.125496\" target=\"_blank\" rel=\"noopener\">traumatic brain injury and glymphatic dysfunction</a> was well received at the World Congress of Neurology 2025, where we showed that mean DTI-ALPS values are lower in people with TBI. That made me wonder whether similar work could be done for Alzheimer's disease, Parkinson's disease, or epilepsy." },
 
     { "type": "p", "text": "A quick search showed that Alzheimer's and Parkinson's had already been covered extensively, but epilepsy remained largely untouched. There was no comprehensive review of glymphatic dysfunction in epilepsy, even though PubMed held a wealth of primary studies. The next question was which outcomes to pool. In our TBI paper, Pearson and Spearman correlations rarely yielded a significant pooled result on their own. This time, we also pooled mean differences in DTI-ALPS between patients and healthy controls. We split the analysis by epilepsy type, and beyond disease duration, we looked at age, age at onset, seizure frequency, and individual seizure duration." },
