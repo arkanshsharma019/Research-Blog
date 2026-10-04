@@ -4,7 +4,7 @@
   "body": [
     {
       "type": "image",
-      "src": "images/gf3.png",
+      "src": "gf3.png",
       "alt": "Graphical abstract: DTI-ALPS is reduced in epilepsy (17 studies; pooled MD -0.157, 95% CI -0.197 to -0.116) and is associated with longer disease duration.",
       "caption": "Graphical abstract"
     },
