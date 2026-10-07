@@ -2,6 +2,13 @@
   "title": "Seizing the Data: The True Burden of Headaches in Epilepsy",
   "date": "2026-09-10",
   "body": [
+    {
+      "type": "image",
+      "src": "gf2.png",
+      "alt": "Graphical abstract: Headache affects two in five people with epilepsy worldwide and one in four children with epilepsy. Interictal and postictal headaches are the most common, migraine and tension-type headaches predominate, and prevalence varies by region and anti-seizure medication regimen.",
+      "caption": "Graphical abstract"
+    },
+
     { "type": "p", "text": "The talks for this paper started in early 2025, when a few of my colleagues were looking at potential collaborations in the field of epilepsy. We were brainstorming randomly. The technique I often use is to pick a topic — say like epilepsy — and try joining it with other fields (maybe stroke, cognition, or movement disorders) to see what intersections have active research gaps. While brainstorming, the idea stuck with me: what if we do something related to epilepsy and headaches?" },
 
     { "type": "p", "text": "When we searched the literature, we found a previous <a href=\"https://link.springer.com/article/10.1186/s10194-020-1074-0\" target=\"_blank\" rel=\"noopener\">meta-analysis by Duko et al.</a> that had covered data up until 2019. They had included only 17 studies, but the problem was that some of the studies they included were not actually related to epilepsy and headache. We even tried writing a letter to the journal, but I think it got ignored. As we actively searched further, we realized that even up until 2019, they had missed a lot of articles — to the extent that when we searched for articles till 2025, we found close to 70 inclusions, the majority of which were published before 2019. There was a huge gap in the literature that needed to be updated, and a new study was hence required. We also realized we could include the pediatric population, something that was entirely ignored in their previous work." },
