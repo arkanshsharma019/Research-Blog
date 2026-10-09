@@ -2,6 +2,13 @@
   "title": "From a Metro Ride to a Manuscript",
   "date": "2026-09-05",
   "body": [
+    {
+      "type": "image",
+      "src": "gf1.png",
+      "alt": "Graphical abstract: systematic review, pairwise meta-analysis and network meta-analysis of the safety of anti-amyloid monoclonal antibodies in phase 3 trials, covering ARIA-E and ARIA-H prevalence, APOE4 carrier comparisons, and volumetric brain changes.",
+      "caption": "Graphical abstract"
+    },
+
     { "type": "p", "text": "The idea for this paper started in November 2024, on a metro ride to visit friends. I was scrolling through JAMA Neurology's latest articles and came across a <a href=\"https://jamanetwork.com/journals/jamaneurology/fullarticle/2826606\" target=\"_blank\" rel=\"noopener\">piece on ARIA</a>. At the time, as a second-year MBBS student, I didn't know much about ARIA (amyloid-related imaging abnormalities) yet, but I kept seeing it pop up again and again across different journal notifications I used to get. Excited, I jotted the idea down." },
 
     { "type": "p", "text": "Then in January, after our year-end exams were over, a few of us were looking for a project one night, and I looked up whether there was any existing meta-analysis on ARIA. Sure enough, there was <a href=\"https://pubmed.ncbi.nlm.nih.gov/36038268/\" target=\"_blank\" rel=\"noopener\">one, published by Jeong et al. in 2022</a>, covering all the phase 2 trials up until that year. We wanted to update the work with the large number of phase 3 RCTs that had since come out, so we started with this intention in January 2025." },
